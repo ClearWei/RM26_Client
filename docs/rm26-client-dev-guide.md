@@ -106,9 +106,8 @@ cmake --build --preset release
 ctest --preset release
 ```
 
-项目名称已经是 `RM26CustomClient`，但可执行目标暂时保留历史兼容名
-`RoboMasterClient2025`。修改目标名称前必须同时处理启动脚本、打包和兼容迁移，不能只改
-CMake 中的一处字符串。
+项目名称为 `RM26CustomClient`；可执行目标在 1.x 期间继续使用兼容名 `RoboMasterClient2025`。
+重命名时需同步更新启动脚本、打包配置和兼容迁移说明。
 
 ### 2.5 运行客户端
 
@@ -166,8 +165,8 @@ flowchart LR
 3. 新功能、协议调整、目录重组和大范围重构先建立 issue；明确缺陷可以提交小型 PR。
 4. 记录计划执行的验证命令，以及受条件限制无法验证的部分。
 
-项目不要求所有修改都采用 TDD，也不声称现有测试覆盖全部功能。修改可独立验证的 C++
-行为时，应补充或更新 QtTest；纯文档、样式或平台配置改动则选择与风险匹配的验证方式。
+可独立验证的 C++ 行为应补充或更新 QtTest；纯文档、样式和平台配置改动按实际风险选择验证
+方式。
 
 ### 4.2 按改动类型定位文件
 
@@ -222,8 +221,7 @@ ctest --preset dev -R '^TestGameData$'
 | MQTT 和协议 | `TestMqttManager`、`TestProtocol`、`TestProtobuf` |
 | 视频数据包记录 | `TestVideoDatagramLogger` |
 
-这些名称只是现有测试的入口，不代表相关功能已经被完整覆盖。提交前仍应执行完整 CTest，并
-根据改动补充手工或集成证据。
+表中名称用于快速定位相关测试。提交前仍应执行完整 CTest，并按改动补充手工或集成证据。
 
 ### 5.2 专项检查
 
@@ -268,8 +266,8 @@ python3 tools/release/check_public_readiness.py
 7. 更新[协议边界说明](architecture/protocol-boundary.md)或相关绑定文档。
 8. 增加 descriptor、golden payload 或行为测试，并运行完整协议检查与 CTest。
 
-客户端与模拟器已经共用 canonical schema。涉及公共消息时先阅读
-[协议单源收敛记录](maintainers/protocol-convergence-plan.md)，不要手工修改生成的 pb2。
+客户端和模拟器的协议代码均由 canonical schema 生成。涉及公共消息时先阅读
+[Protobuf 单一 Schema 维护说明](maintainers/protocol-convergence-plan.md)，不要手工修改生成的 pb2。
 
 ### 6.2 协议 PR 至少说明
 
@@ -308,12 +306,11 @@ Windows PowerShell 的虚拟环境命令以及视频参数见模拟器说明。�
 4. 再分别启用 UDP 或视频，避免一次引入多个变量。
 5. 记录客户端日志、模拟器日志和具体配置，不记录真实现场凭据。
 
-模拟器已提供 Python 赛事推进测试和 JavaScript 地图几何测试，稳定命令见
-[验证说明](development/verification.md)。修改模拟器时还需运行协议检查，并根据改动完成启动、状态发布和
-正常退出的隔离冒烟。不要把“服务能启动”描述成完整回归已经通过。
+模拟器测试包括 Python 赛事推进用例和 JavaScript 地图几何用例，命令见
+[验证说明](development/verification.md)。修改模拟器时还应完成协议检查，以及启动、状态发布和
+正常退出的隔离冒烟。服务启动结果只记录进程可用性，完整回归以对应测试和链路证据为准。
 
-配置字段有变化时，还要同步 `config.example.json`、配置说明和示例检查测试；不能只修改运行
-配置，让公开模板在下一次发布时才被人工发现已经过期。
+配置字段变更时，同步更新 `config.example.json`、配置说明和示例检查测试。
 
 ## 8. 安全边界
 

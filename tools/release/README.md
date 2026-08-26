@@ -3,14 +3,14 @@
 ## QML lint 基线检查
 
 `check_qml_lint.py` 使用 Qt 自带的 `qmllint` 扫描 `src/qml`，并按
-`qml_lint_policy.json` 阻止静态质量回退：当前 `unqualified` 上限为 0；任何
+`qml_lint_policy.json` 阻止静态质量回退：`unqualified` 上限为 0；任何
 新的诊断类别、严重级别变化或数量回升都会失败。
 
 ```bash
 python3 tools/release/check_qml_lint.py
 ```
 
-当前全仓应保持零诊断，不能为通过检查而上调基线。检查器会先查找 PATH，再通过 `qtpaths6`
+策略要求全仓保持零诊断，不能为通过检查而上调基线。检查器会先查找 PATH，再通过 `qtpaths6`
 定位发行版专用的 Qt 工具目录；仍缺少
 `qmllint` 时返回退出码 `2` 并给出 Qt Declarative 工具依赖提示。Quality CI 在 Ubuntu 原生 Qt
 环境中执行真实扫描，检查器自身的策略和回退判定由发布工具单元测试覆盖。
@@ -68,9 +68,9 @@ python3 tools/release/check_packaging_readiness.py
 未跟踪的本地构建目录不属于发布快照，也不会让检查失败。策略中的证据必须使用仓库相对路径；
 错误输出不会回显非法的本机绝对路径。
 
-当前策略为 `source`：首个公开版本只允许提供源码归档，并要求源码构建证据、SPDX SBOM、
-SHA-256 校验和生成入口和“不签名”说明均可从 Git 索引复核。该检查通过只说明发行方式与供应链
-入口已经明确，不代表许可证、素材权属、版本和运行资源门禁已经通过。完整标准见
+仓库策略为 `source`：发行内容为源码归档，并要求源码构建证据、SPDX SBOM、SHA-256 校验和
+生成入口和“不签名”说明都能从 Git 索引复核。该检查覆盖发行方式与供应链入口；许可证、素材
+权属、版本和运行资源由各自门禁检查。完整标准见
 [开源发行与打包契约](../../docs/maintainers/packaging-contract.md)。
 
 ## 源码归档供应链
@@ -85,8 +85,8 @@ python3 tools/release/generate_source_sbom.py \
   --license '<已确认的 SPDX 标识>'
 ```
 
-项目许可证未确认时，`--license` 必须保持默认的 `NOASSERTION`，这类输出只能用于内部复核，
-不能把尚未授权的代码变成可发布内容。最终源码归档生成后再计算校验和：
+本项目使用 MIT License，生成公开 SBOM 时传入 `MIT`。其他项目若尚未确认许可证，应保留
+`NOASSERTION`；SBOM 元数据本身不会改变代码授权。最终源码归档生成后再计算校验和：
 
 ```bash
 python3 tools/release/generate_checksums.py \
@@ -97,7 +97,7 @@ python3 tools/release/generate_checksums.py \
 
 SBOM 只覆盖 Git 索引中的源码文件；未来二进制发行还必须补充动态库、系统包和平台运行时组件。
 首个源码归档暂不签名，边界见
-[首个源码发行版签名策略](../../docs/maintainers/signing-policy.md)。
+[源码发行物签名策略](../../docs/maintainers/signing-policy.md)。
 
 ## 运行时资源检查
 
@@ -113,9 +113,8 @@ python3 tools/release/check_runtime_resources.py
 目录结构。源码目录或当前工作目录中的相对路径兜底，只能帮助开发机构建运行，不能证明发行物
 包含这些资源。
 
-当前检查通过。33 个代码引用中没有缺失的必需音效；12 个历史比赛音效按
-[ADR 0004](../../docs/decisions/0004-optional-audio-pack.md) 登记为可选资源包，默认源码归档不携带。
-检查器会显示可选缺失数量，但不会把静默降级当作核心功能故障；登记与源码引用不一致、证据缺失，
+12 个历史比赛音效按 [ADR 0004](../../docs/decisions/0004-optional-audio-pack.md) 登记为可选资源包，
+默认源码归档不携带。检查器会显示可选缺失数量，但不会把静默降级当作核心功能故障；登记与源码引用不一致、证据缺失，
 或者可选文件进入索引后缺少 QRC alias，仍会阻断发布。
 
 270 帧结算动画已经加入安装树，但不会整体嵌入 QRC。原因和重新评估条件见
@@ -133,7 +132,7 @@ python3 tools/release/check_runtime_resources.py
 python3 tools/release/check_version_contract.py
 ```
 
-当前应用公开版本统一为 `1.0.0`，模拟器采用独立版本 `0.1.0`。规范名称登记为
+应用公开版本为 `1.0.0`，模拟器采用独立版本 `0.1.0`。规范名称登记为
 `RM26CustomClient`；为避免破坏既有比赛脚本和启动路径，1.x 期间继续使用历史可执行名
 `RoboMasterClient2025`，2.0.0 前应完成规范名称迁移并同步各平台入口。
 
@@ -159,11 +158,11 @@ python3 tools/release/check_sim_protobuf_runtime.py
 
 检查通过证明双端生成来源一致，不代表全部官方消息已经完成字段审计，也不替代真实赛事联调。
 四个已校正消息和 wire golden 见
-[协议单源收敛记录](../../docs/maintainers/protocol-convergence-plan.md)。
+[Protobuf 单一 Schema 维护说明](../../docs/maintainers/protocol-convergence-plan.md)。
 
 ## 公开发布预检
 
-`check_public_readiness.py` 审计 Git 索引中的待提交快照，用于在创建公开仓库或发布版本前发现明确的阻断项。未暂存改动和未跟踪文件不属于这次发布快照。
+`check_public_readiness.py` 审计 Git 索引中的待提交快照，用于在创建公开仓库或发布版本前发现明确的阻断项。未暂存改动和未跟踪文件不属于索引快照。
 
 ```bash
 python3 tools/release/check_public_readiness.py
@@ -174,10 +173,10 @@ python3 tools/release/check_public_readiness.py
 GitHub 上的 `Public Readiness` 手动工作流会安装 `ffprobe`，执行媒体元数据、打包契约、运行时
 资源、版本契约、公开树、示例配置和文档引用检查。除第一项外，后续步骤使用 `if: always()`，
 因此一次手动运行可以收集全部阻断，而不会在首个预期失败处提前结束。准备公开仓库或打版本时，
-应保存该工作流的通过记录。已经收敛的打包、运行时资源和版本契约进入日常 Quality CI；仍需
-负责人授权的许可证、素材权属和完整公开树只由手动工作流检查，不会被伪装成日常绿色结果。
+应保存该工作流的通过记录。打包、运行时资源和版本契约由日常 Quality CI 检查；许可证、素材
+权属和完整公开树需要负责人授权，由手动工作流检查。
 
-当前规则检查：
+检查内容包括：
 
 - 根目录许可证是否缺失；
 - 本地开发工具配置、临时会话、内部计划、任务记录和运行证据是否误入公开树；

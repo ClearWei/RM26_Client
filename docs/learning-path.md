@@ -1,8 +1,7 @@
 # RM26 客户端学习路径
 
-这份学习路径面向第一次接触 RM26 Custom Client 的开发者。它不要求真实赛事引擎、机器人
-或现场网络，目标是先理解项目解决的问题，再沿真实数据链路读懂客户端和模拟器，最后完成
-一次边界清晰、能够复核的贡献。
+这份学习路径面向第一次接触 RM26 Custom Client 的开发者，可以在普通本地环境完成。你将先
+理解项目目标，再沿真实数据链路阅读客户端和模拟器，最后完成一次边界清晰、能够复核的贡献。
 
 文中的命令默认从仓库根目录执行。除 CMake 构建目录外，这些命令不会连接或操作真实赛事
 环境。协议和现场能力的边界以当前代码、测试以及团队核验的官方资料版本为准。
@@ -23,21 +22,21 @@
 
 完成这一节后，你应该能回答三个问题：
 
-1. 客户端为什么不只是一个比赛信息展示页面；
+1. 客户端解决了哪些信息展示之外的操作问题；
 2. `src/`、`sim/`、`tools/` 分别承担什么职责；
-3. 项目当前已经验证了什么，哪些内容仍属于发布前待办。
+3. 仓库提供哪些验证证据，各项证据适用于哪些环境。
 
 ### 阅读顺序
 
 1. 从 [项目 README](../README.md) 了解赛场问题、核心能力和构建入口。
-2. 阅读 [架构总览](architecture/overview.md) 的“当前运行架构”和“模块职责”。
+2. 阅读 [架构总览](architecture/overview.md) 的“运行架构”和“模块职责”。
 3. 沿[组件职责与数据流](architecture/data-flow.md)选择一条真实消息或视频链路。
 4. 阅读 [测试与质量门](architecture/testing.md)，区分可复核结果与尚未覆盖的平台、现场环境。
 5. 需要核对协议版本时，查看[官方资料索引](references/official-materials.md)和
    [协议目标清单](../src/network/proto/protocol_manifest.json)。
 
-先记住这条边界：`src/` 是正式 Qt/C++ 客户端，`sim/` 是独立协议对端；开发检查工具可以
-观察和验证客户端，但不应成为正式客户端的运行时业务依赖。
+先记住这条边界：`src/` 提供正式 Qt/C++ 客户端，`sim/` 作为独立协议对端，测试和发布工具
+用于离线验证。
 
 ### 可以复核的命令
 
@@ -52,20 +51,20 @@ python3 tools/release/check_runtime_resources.py
 python3 tools/release/check_sim_protobuf_runtime.py
 ```
 
-这一步不要求先启动客户端。两项检查通过，说明当前工作树满足已登记的资源和模拟器协议契约，
-不代表真实赛事环境已经完成联调。
+这一步不要求先启动客户端。两项检查用于核对资源清单和模拟器协议契约；真实赛事环境的联调
+结果需另行记录。
 
 ## 30 分钟理解模拟器与客户端边界
 
 ### 学习目标
 
-完成这一节后，你应该能画出模拟器到客户端的 MQTT、UDP 和视频链路，并说明为什么模拟器
-不能直接修改客户端内存，也不能成为生产协议的新真相源。
+完成这一节后，你应该能画出模拟器到客户端的 MQTT、UDP 和视频链路，并说明模拟器如何通过
+协议与客户端隔离，以及生产协议真相源如何保持唯一。
 
 ### 先看组件关系
 
 1. [模拟器说明](../sim/README.md)：环境、启动入口和开发约束。
-2. [模拟器架构](architecture/simulator.md)：当前组件、已知结构债务和安全边界。
+2. [模拟器架构](architecture/simulator.md)：组件职责、安全边界与演进约束。
 3. [系统架构总览](architecture/overview.md)：模拟器在完整系统中的位置。
 
 ### 对照源码
@@ -80,8 +79,7 @@ python3 tools/release/check_sim_protobuf_runtime.py
 | 客户端组合入口 | [`src/ui/MainWindow.cpp`](../src/ui/MainWindow.cpp) | `GameData`、网络、视频和 QML 的组装 |
 | 客户端接入层 | [`src/network/NetworkManager.cpp`](../src/network/NetworkManager.cpp) | topic 路由、解析和上行命令 |
 
-当前公开基线包含模拟器 Python 与 JavaScript 自动化测试。修改模拟器时，应同时运行协议兼容
-检查和对应测试，不要用一次手工启动代替可重复证据。
+修改模拟器时，同时运行 Python、JavaScript 和协议兼容性检查，并把手工启动结果作为补充证据。
 
 ### 可以复核的命令
 
@@ -101,7 +99,7 @@ python3 tools/release/check_sim_protobuf_runtime.py
 
 ## 按数据链路读代码
 
-与其从目录逐个阅读文件，更推荐选择一条真实消息，沿“产生—传输—解析—状态—界面”追踪。
+选择一条真实消息，按“产生—传输—解析—状态—界面”的顺序追踪源码。
 
 ### 链路一：比赛状态进入界面
 
@@ -131,8 +129,8 @@ ctest --preset release -R "TestProtobuf|TestProtocol|TestGameData" --output-on-f
 
 ### 链路二：界面命令发回协议对端
 
-**学习目标：**理解 QML 动作为什么必须经过有类型的 C++ 接口、频率限制和 MQTT 发布，而不
-应在页面中自行拼接 payload。
+**学习目标：**理解 QML 动作如何经过有类型的 C++ 接口、频率限制和 MQTT 发布，使页面与协议
+细节保持解耦。
 
 可以从 `CommonCommand` 或 `AssemblyCommand` 选择一条路径：
 
@@ -181,9 +179,9 @@ ctest --preset release -R "TestVideoDatagramLogger" --output-on-failure
 
 先读[协议边界与真相源](architecture/protocol-boundary.md)，再查看
 [`protocol_manifest.json`](../src/network/proto/protocol_manifest.json)和
-[`robomaster.proto`](../src/network/proto/robomaster.proto)。客户端与模拟器已经共用该 schema，
-生成方式、四个消息的兼容修正和剩余全量字段审计边界记录在
-[协议单源收敛记录](maintainers/protocol-convergence-plan.md)。
+[`robomaster.proto`](../src/network/proto/robomaster.proto)。客户端与模拟器共用该 schema，
+生成方式、兼容修正和字段审计边界记录在
+[Protobuf 单一 Schema 维护说明](maintainers/protocol-convergence-plan.md)。
 
 ```bash
 python3 tools/release/check_sim_protobuf_runtime.py
@@ -211,8 +209,8 @@ ctest --preset release -R "TestTacticalCommandPage|TestMainWindow" --output-on-f
 
 ### 并发、重连与确定性退出
 
-**你会学到：**为什么网络可达不等于生命周期正确，以及如何检查后台回调、对象所有权和
-快速启动—停止—再启动。
+**你会学到：**如何区分网络连通与对象生命周期，并检查后台回调、对象所有权和快速
+启动—停止—再启动。
 
 入口：
 
@@ -235,7 +233,7 @@ ctest --preset release -R "TestMqttManager" --output-on-failure
 - [`TacticalCommandPage.qml`](../src/qml/Tactical/TacticalCommandPage.qml)
 - [`test_tactical_analyzer.cpp`](../tests/unit/test_tactical_analyzer.cpp)
 - [`test_tactical_command_page.cpp`](../tests/unit/test_tactical_command_page.cpp)
-- [战术分析：当前实现与演进方向](architecture/tactical-analysis.md)
+- [战术分析的数据边界与演进方向](architecture/tactical-analysis.md)
 
 ```bash
 ctest --preset release -R "TestTacticalAnalyzer|TestTacticalCommandPage" \
@@ -244,7 +242,7 @@ ctest --preset release -R "TestTacticalAnalyzer|TestTacticalCommandPage" \
 
 ### 测试和发布证据
 
-**你会学到：**如何把一次“本机能运行”变成绑定提交、平台和依赖版本的可复核证据。
+**你会学到：**如何记录绑定提交、平台和依赖版本的可复核运行证据。
 
 入口：
 
@@ -300,7 +298,7 @@ python3 tools/release/check_docs.py
 
 ## 学完之后应该具备的地图
 
-你不需要记住每个文件，但应该能把项目归纳为下面五层：
+学完后，可以用下面五层概括项目：
 
 ```text
 外部赛事系统或本地模拟器
@@ -311,7 +309,7 @@ GameData 与领域逻辑
         ↓ Qt 属性和信号
 Widgets / QML 操作界面
         ↓
-CTest、协议审计和架构审计提供回归证据
+CTest、模拟器测试和发布检查提供回归证据
 ```
 
 遇到不确定的实现时，先回到对应链路和测试确认事实，再决定是否修改目录、接口或协议语义。

@@ -1,60 +1,28 @@
----
-title: 开源发行与打包契约
-status: draft
-owners:
-  - clear
-updated_on: 2026-08-25
-depends_on:
-  - public-release-runbook.md
-  - ../development/verification.md
-  - ../../tools/release/packaging_policy.json
-  - ../../tools/release/runtime_resources.json
-  - ../../tools/release/version_policy.json
----
-
 # 开源发行与打包契约
 
 这份文档定义“能够从源码构建”和“可以作为发行物交付”之间的边界。只有满足对应模式的验收项，
 才能在 README、Release 页面或采访材料中把产物称为可发布版本。
 
-机器可读状态由 `tools/release/packaging_policy.json` 维护，并由
-`tools/release/check_packaging_readiness.py` 检查。文档和策略冲突时，以更保守的结论为准。
+机器可读模式由 `tools/release/packaging_policy.json` 维护，并由
+`tools/release/check_packaging_readiness.py` 检查。文档和策略冲突时采用更保守的结论。
 
-## 当前结论
+## 发行范围
 
-截至 2026-08-25，`release_mode` 为 `source`。首个公开版本只提供从无历史公开镜像固定提交生成的
-源码归档，不提供已经验收的 `.app`、Windows/Linux 安装包或模拟器 wheel。
-
-发行模式之外还有独立阻断面：运行时资源目前缺少完整的索引、QRC 和安装树交付。应用版本与
-历史可执行名称的兼容策略已经收敛，但将 `release_mode` 改为 `source` 或 `binary` 仍不会绕过
-其他检查。
-
-以下事实均为“待决策”或“未满足”，不是已经提供的发行能力：
-
-| 项目 | 当前状态 | 结论 |
-| --- | --- | --- |
-| 源码归档 | 模式已确定，发布条件未满足 | 仍需完成无历史公开镜像、授权和发布快照验收 |
-| macOS `.app` | 未满足 | 当前本地产物依赖开发机 Homebrew 绝对路径，平台元数据和签名验证不完整 |
-| Windows 安装包 | 未满足 | 没有完整运行库部署、安装格式和对应 CI 证据 |
-| Linux 安装包 | 未满足 | 没有 `install()`、系统安装入口或 AppImage/deb/tar 验收 |
-| 模拟器 wheel | 未满足 | 当前 wheel 缺少生成协议文件、静态网页资源和稳定命令入口 |
-| SBOM、许可证包、校验和 | 未满足 | 只有目标说明，没有随最终产物自动生成并验证的证据 |
-| 签名、公证与产物证明 | 待决策 | 尚未确定支持平台、密钥管理和公开说明 |
-
-本地 `build/` 中出现 `.app`、可执行文件或 wheel，只证明某次开发机构建产生了文件，不等于该文件
-可在另一台机器安装或运行。
+仓库使用 `source` 模式，公开交付物为固定提交生成的源码归档。预编译的 macOS、Windows、Linux
+安装包和模拟器 wheel 不属于该模式的发行内容。本地 `build/` 中出现的应用、可执行文件或 wheel
+属于开发产物，经过目标平台安装和运行验收后才能作为二进制发行物。
 
 ## 发布模式
 
 ### `undecided`
 
-这是保留的阻断状态，不是当前选择。允许继续开发和验证源码，但不得上传现有 `.app`、wheel 或其他本地
-构建目录作为正式发行物。手动 `Public Readiness` 工作流应当如实失败。
+这是保留的阻断状态，用于发行方式尚未确定的情况。该模式允许继续开发和验证源码，但不允许
+上传 `.app`、wheel 或本地构建目录作为正式发行物。手动 `Public Readiness` 工作流应返回阻断。
 
 ### `source`
 
-这是当前选择。源码模式只发布无历史公开镜像中的源码归档。允许声明的产物仅限 source archive、source tarball
-或 source zip，不得写成“下载即用”“已提供安装包”或“模拟器可通过 wheel 安装”。
+源码模式发布源码归档，可使用 source archive、source tarball 或 source zip。发行说明应明确
+使用者需要安装依赖并构建，同时避免使用“下载即用”“已提供安装包”或“通过 wheel 安装”等表述。
 
 正式发布源码归档前至少需要：
 
@@ -71,8 +39,8 @@ depends_on:
 运行时必需文件；导出后必须在新目录重新构建和测试。
 
 源码归档的文件级 SBOM 由 `tools/release/generate_source_sbom.py` 生成，最终归档校验和由
-`tools/release/generate_checksums.py` 生成。首版源码归档暂不签名，公开说明见
-[首个源码发行版签名策略](signing-policy.md)。
+`tools/release/generate_checksums.py` 生成。源码归档的签名说明见
+[源码发行物签名策略](signing-policy.md)。
 
 ### `binary`
 
@@ -92,12 +60,12 @@ depends_on:
 
 ## 平台与产物验收
 
-| 平台 | 可接受格式示例 | 必须验证的重点 | 当前状态 |
-| --- | --- | --- | --- |
-| macOS | DMG、签名 `.app` 或明确说明的压缩包 | Qt 依赖部署、Bundle 元数据、架构、签名与公证 | 未满足 |
-| Windows | ZIP、MSI 或安装器 | Qt 插件、第三方 DLL、VERSIONINFO、卸载或解压运行路径 | 未满足 |
-| Linux | AppImage、deb 或带安装说明的 tar | RPATH、Qt 插件、`.desktop`、图标和目标发行版范围 | 未满足 |
-| 模拟器 | wheel、源码 extra 或 OCI 镜像 | protobuf、静态资源、命令入口、隔离安装启动 | 未满足 |
+| 平台 | 可接受格式示例 | 必须验证的重点 |
+| --- | --- | --- |
+| macOS | DMG、签名 `.app` 或明确说明的压缩包 | Qt 依赖部署、Bundle 元数据、架构、签名与公证 |
+| Windows | ZIP、MSI 或安装器 | Qt 插件、第三方 DLL、VERSIONINFO、卸载或解压运行路径 |
+| Linux | AppImage、deb 或带安装说明的 tar | RPATH、Qt 插件、`.desktop`、图标和目标发行版范围 |
+| 模拟器 | wheel、源码 extra 或 OCI 镜像 | protobuf、静态资源、命令入口、隔离安装启动 |
 
 未在策略中声明的平台属于“不提供发行物”，而不是“可能可以运行”。
 
@@ -117,13 +85,13 @@ Bundle。安装测试必须从源码树外启动，避免相对路径兜底掩�
 ## 版本与命名契约
 
 机器可读状态由 `tools/release/version_policy.json` 维护，
-`tools/release/check_version_contract.py` 只读取 Git 索引中的真实来源。正式发布前应确定一个应用
-版本真相源，并同步 CMake、公开示例配置、Qt 运行时元数据、配置兜底、Docker 镜像元数据、macOS
-应用包和 Release tag。
+`tools/release/check_version_contract.py` 只读取 Git 索引中的真实来源。应用版本应有唯一真相源，
+并同步到 CMake、公开示例配置、Qt 运行时元数据、配置兜底、Docker 镜像元数据、macOS 应用包和
+Release tag。
 
-当前应用版本以 `1.0.0` 为唯一公开口径，模拟器采用独立版本 `0.1.0`。规范名称登记为
-`RM26CustomClient`，现有 CMake、Docker 和 macOS 入口在 1.x 期间继续使用历史名称
-`RoboMasterClient2025`，以免破坏比赛脚本；2.0.0 前必须完成名称迁移。
+应用版本为 `1.0.0`，模拟器采用独立版本 `0.1.0`。规范名称登记为 `RM26CustomClient`，CMake、
+Docker 和 macOS 入口在 1.x 期间继续使用兼容名称 `RoboMasterClient2025`。名称迁移应随主版本
+升级处理，并同步各平台入口。
 
 协议清单中的 `2.0.0` 对应官方 V2.0.0 兼容目标，始终作为独立维度检查，不等同于应用版本，
 也不参与客户端或模拟器的版本比较。
@@ -135,9 +103,9 @@ Bundle。安装测试必须从源码树外启动，避免相对路径兜底掩�
 
 资源必须同时满足“运行需要、文件存在、路径正确、体积可接受、允许再分发”。
 `tools/release/check_runtime_resources.py` 按 `tools/release/runtime_resources.json` 核对 Git 索引中的
-代码引用、精确 QRC alias 和 `install()` 规则。当前检查已通过：没有缺失的必需音效；12 个历史
-比赛音效按 [ADR 0004](../decisions/0004-optional-audio-pack.md) 作为可选资源包保留文件名接口，默认
-源码归档不携带。可选文件一旦进入 Git 索引，仍需通过素材授权和 QRC alias 检查。
+代码引用、精确 QRC alias 和 `install()` 规则。12 个历史比赛音效按
+[ADR 0004](../decisions/0004-optional-audio-pack.md) 作为可选资源包保留文件名接口，默认源码归档
+不携带。可选文件进入 Git 索引后，也要通过素材授权和 QRC alias 检查。
 
 270 帧结算动画已通过 `install()` 保留外部目录结构。约 552 MiB 的原图不整体嵌入 QRC，避免
 重复包体和超大生成源码；该取舍见
@@ -179,8 +147,8 @@ SBOM、校验和和签名只能在最终归档生成后执行，不能复用构�
 
 ## 公开历史边界
 
-首个公开版本必须从通过门禁的提交导出快照，在新目录建立没有内部历史的新公开仓库。研发仓库的
-历史重写、删除旧 tag 或直接切换为 public 都不能替代这一步。详细操作见
+首次建立公开仓库时，从通过门禁的提交导出快照，并在新目录建立没有内部历史的公开根提交。
+详细操作见
 [公开镜像发布手册](public-release-runbook.md)。
 
 ## 最终验收
@@ -194,6 +162,6 @@ SBOM、校验和和签名只能在最终归档生成后执行，不能复用构�
 5. `python3 tools/release/check_version_contract.py` 通过；
 6. 对应模式的干净环境构建、安装和启动证据齐全；
 7. 最终产物的 SBOM、许可证包、校验和与签名策略齐全；
-8. 新建无历史公开镜像，并从公开远端重新 clone 复验。
+8. 从公开远端重新 clone，并在全新目录复验。
 
 不得通过忽略退出码、删除失败检查或把 `release_mode` 改成与事实不符的值来获得绿色结果。

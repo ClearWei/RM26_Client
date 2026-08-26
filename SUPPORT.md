@@ -23,7 +23,7 @@
 - 可复现缺陷：使用 GitHub 的缺陷报告模板提交 issue。
 - 功能建议：使用功能建议模板，先说明使用场景和验收标准。
 - 安全问题：按照 [SECURITY.md](SECURITY.md) 私下报告，不要公开披露。
-- 一般讨论：如果仓库启用了 Discussions，可在讨论区交流；否则请提交范围清晰的 issue。
+- 一般讨论：请提交范围清晰的 issue，并说明使用场景或具体问题。
 
 提问前请先阅读 [README.md](README.md)、[docs/README.md](docs/README.md) 和 [sim/README.md](sim/README.md)，并搜索已有 issue。
 

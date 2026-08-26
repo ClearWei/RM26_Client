@@ -68,7 +68,7 @@ flowchart LR
 
 模拟器目录不再保留第二份手工 schema。协议变更需要同时更新 descriptor、Python/C++ wire
 golden 和相关行为测试；生成及验证命令见
-[协议单源收敛记录](../maintainers/protocol-convergence-plan.md)。
+[Protobuf 单一 Schema 维护说明](../maintainers/protocol-convergence-plan.md)。
 
 ### UDP 帧格式并存
 

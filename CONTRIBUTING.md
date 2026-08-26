@@ -5,7 +5,7 @@
 > 项目源代码采用 [MIT License](LICENSE)。提交贡献即表示你有权提供相关内容，并同意维护者按
 > 项目许可证发布；第三方代码、素材和标识仍需遵守各自的授权与署名要求。
 
-本项目由社区团队独立开发，并非 DJI 或 RoboMaster 官方项目，也不代表其立场或承诺。
+本项目由社区团队独立开发，与 DJI 或 RoboMaster 无隶属或官方合作关系，也不代表其立场或承诺。
 
 ## 开始之前
 
@@ -25,7 +25,8 @@
 - `sim`：独立模拟器，用于无赛事引擎时的开发和测试。
 - `tests`、`tools/release`：测试和发布检查，不应成为正式客户端的隐性依赖。
 
-协议语义以仓库当前声明的 RoboMaster 2026 通信协议 V2.0.0 兼容目标为准。现场适配不得悄悄改变协议含义，差异应记录在文档和测试中。
+协议语义以 [`protocol_manifest.json`](src/network/proto/protocol_manifest.json) 声明的兼容目标为准。
+现场适配不得悄悄改变协议含义，差异应记录在文档和测试中。
 
 ## 开发流程
 
@@ -44,7 +45,7 @@ cmake --build build --parallel
 ctest --test-dir build --output-on-failure
 ```
 
-模拟器改动当前至少运行协议兼容性与独立测试：
+模拟器改动至少运行协议兼容性与独立测试：
 
 ```bash
 python3 tools/release/check_sim_protobuf_runtime.py

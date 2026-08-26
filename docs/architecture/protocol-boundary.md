@@ -37,9 +37,9 @@
 - golden payload 同时经过 C++ 与 Python 解析，验证跨端兼容。
 - 协议审计覆盖 `src/`、`sim/` 和公开文档，不只扫描生产 proto。
 
-客户端与模拟器已经共用 canonical schema；提交的 Python 生成代码由 CI 通过 descriptor 对比
-防止漂移。四处已校正差异、生成命令、wire golden 和剩余全量字段审计边界见
-[Protobuf 协议单源收敛记录](../maintainers/protocol-convergence-plan.md)。
+客户端和模拟器均由仓库内的 canonical schema 生成协议代码。CI 使用 descriptor 对比和
+wire golden 检查字段及字节兼容性；生成与验证方法见
+[Protobuf 单一 Schema 维护说明](../maintainers/protocol-convergence-plan.md)。
 
 机器可读的兼容目标见
 [protocol_manifest.json](../../src/network/proto/protocol_manifest.json)。

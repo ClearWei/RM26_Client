@@ -7,18 +7,18 @@ match state, robot telemetry, radar, and multiple video feeds into one actionabl
 It also includes a standalone simulator so developers can exercise the main data paths without a
 complete field or physical robots.
 
-Fudan University Nebula EGA has iterated on the project through training and competition needs in
-the 2026 season. It is not a one-off UI showcase: the system is built around operator attention,
-graceful degradation, and evidence-based development.
+The project grew out of Fudan University Nebula EGA's training and competition work during the 2026
+season. It has evolved around operator attention, graceful degradation, and evidence-based
+development.
 
 > [!IMPORTANT]
 > The project source code is released under the [MIT License](LICENSE). The maintainers have
-> approved the assets in the current release snapshot for public distribution; see the
+> approved the assets distributed with this source release; see the
 > [asset register](ASSET_LICENSES.md) for the exact scope. Third-party names and marks remain the
 > property of their respective owners.
 
-This is an independent project and is not affiliated with or endorsed by DJI or RoboMaster.
-RoboMaster, DJI, and related marks belong to their respective owners.
+This project is independently developed by a community team, with no affiliation or official
+partnership with DJI or RoboMaster. RoboMaster, DJI, and related marks belong to their respective owners.
 
 ## One-minute overview
 
@@ -27,14 +27,14 @@ RoboMaster, DJI, and related marks belong to their respective owners.
 | Can the operator see the whole field? | Bring match state, positions, health, key events, and data freshness into one tactical view |
 | Does important information arrive in time? | Organize UI, audio, and layered alerts by role and urgency to reduce active searching |
 | Can operation continue when the primary view fails? | Use a configured backup source when available, then return to the tactical view after recovery |
-| Can development continue without a complete field? | Run the simulator as an independent protocol peer instead of embedding test branches in the client |
+| Can development continue without a complete field? | Use an independent protocol peer for match state, commands, and video while keeping the production client on its normal data paths |
 | Can behavior survive refactoring? | Capture evidence with client tests, simulator tests, and release checks before moving boundaries |
 
 ## Choose your path
 
 | What you want to do | Start here | What you will learn or produce |
 | --- | --- | --- |
-| Decide whether the project fits your needs | Read [Capabilities](#capabilities) and [Current status](#current-status-and-known-limitations) | Scope and current maturity |
+| Decide whether the project fits your needs | Read [Capabilities](#capabilities) and [Release scope](#release-contents-and-scope) | Features and operating conditions |
 | Build and run the client | Follow the [Quick start](#quick-start) | A local executable and basic runtime environment |
 | Exercise match data without the client | [Start the simulator](#3-start-the-simulator) | A browser-controlled, independent protocol peer |
 | Understand the architecture and data paths | Follow the [learning path](docs/learning-path.md) (Chinese) | A source-reading route from ingress to QML |
@@ -42,19 +42,18 @@ RoboMaster, DJI, and related marks belong to their respective owners.
 
 ## Why this project exists
 
-The scarce resource during a match is not data; it is operator attention. Conventional interfaces
-often make operators search across several sources. RM26 Custom Client instead turns the available
-information into one tactical picture, then presents it according to role and urgency:
+A match produces plenty of information, while operators have very little attention to spare on the
+interface. RM26 Custom Client brings scattered inputs into one tactical picture and presents them
+according to role and urgency:
 
 - **See the whole field:** combine positions, health, match state, key events, and data freshness.
 - **Know sooner:** deliver important information through a tactical map, audio, and layered alerts.
 - **Keep operating:** when a configured backup source remains available, present an alternative
   view after primary-view failure. Actual availability still depends on field links and configuration.
 
-The system has been used in training and competition environments during the 2026 season. This
-statement records real workflow exposure; it is not a performance claim about latency, reliability,
-or competition results. Reproducible engineering results are recorded separately in the
-[verification guide](docs/development/verification.md) (Chinese).
+The system has been used in training and competition workflows during the 2026 season. That usage
+describes its deployment background; latency, reliability, and other engineering conclusions follow
+the reproducible records in the [verification guide](docs/development/verification.md) (Chinese).
 
 ## Capabilities
 
@@ -72,12 +71,12 @@ or competition results. Reproducible engineering results are recorded separately
 
 - `src/` is the production Qt/C++ client for network ingress, shared match state, video processing,
   and the operator UI.
-- `sim/` is a separately launched protocol peer that provides controlled input off the field; it
-  does not replace integration with the real competition system.
-- `tests/` and `tools/release/` form the development and release verification layer and must not become
-  runtime business dependencies of the production client.
-- Real competition commands and remote field actions are denied to automation by default and
-  require explicit operator authorization.
+- `sim/` is a separately launched protocol peer that provides controlled input off the field. The
+  real competition system still requires its own integration session.
+- `tests/` and `tools/release/` form the development and release verification layer. The production
+  client has no runtime dependency on these directories.
+- Real competition commands and remote field actions require explicit operator authorization;
+  automation does not issue them on its own.
 
 ## System overview
 
@@ -100,12 +99,9 @@ documents are currently maintained in Chinese.
 
 ## Quick start
 
-This is the shortest path that can be checked from the current repository without assuming access
-to the competition system or field network. A successful build proves that the client can be
-produced and launched locally. Reproducing the full data path also requires a safe test
-configuration shared by the client and simulator, plus an MQTT broker. A sanitized example and a
-machine check are now included; the complete client-broker-simulator demo still needs to be repeated
-in a clean environment before it is documented as verified.
+The following steps take a fresh clone through local client and simulator setup. Connect both
+programs to the same MQTT broker to exercise the main data paths. The public example uses loopback
+addresses throughout, so no competition system or field network is required.
 
 ### 1. Install dependencies
 
@@ -172,9 +168,9 @@ cmake -S . -B build \
 cmake --build build --parallel
 ```
 
-The executable target still uses the historical name `RoboMasterClient2025` to avoid changing field
-scripts and packaging behavior. It remains compatible throughout 1.x and will migrate to the
-canonical `RM26CustomClient` name before 2.0.0.
+The executable target uses the compatibility name `RoboMasterClient2025`. The 1.x series keeps this
+name for existing scripts and packaging workflows; a canonical-name migration belongs in a future
+major release.
 
 Run the application:
 
@@ -203,8 +199,8 @@ local runtime environment. Never commit real IP addresses, credentials, captures
 artifacts.
 
 After a successful build, the `RoboMasterClient2025` target should exist in the corresponding output
-directory. With no data source connected, the application may open without producing match state;
-that alone does not prove simulator or network integration.
+directory. With no data source connected, the client displays an empty state. Match data appears
+after the simulator starts or a test broker connection is available.
 
 ### 3. Start the simulator
 
@@ -253,40 +249,26 @@ python3 tools/release/check_runtime_resources.py
 python3 tools/release/check_public_readiness.py
 ```
 
-The [verification guide](docs/development/verification.md) records required checks, the latest
-release-candidate results, and the scope that remains untested. When a test fails, include the full
+The [verification guide](docs/development/verification.md) records required checks, reference
+results, and their applicable environments. When a test fails, include the full
 command, platform, build options, and log rather than reporting only that it failed locally.
 
-The simulator now provides standalone Python tests for deterministic match progression and
-JavaScript tests for map-coordinate conversion, and both run in Quality CI. They do not connect to
-field systems; changes involving the broker, video streams, or client rendering still require an
-isolated integration or end-to-end check.
+Automated tests cover deterministic match progression, map-coordinate conversion, and protocol
+compatibility, and run in Quality CI. Changes involving the broker, video streams, or client
+rendering should also include an isolated integration or end-to-end check.
 
-### Latest release-candidate verification
+### Verification scope
 
-The following checks were completed against the release-candidate snapshot on macOS and in the
-GitHub Actions Ubuntu 24.04 environment on 2026-08-26.
-See the Chinese [verification guide](docs/development/verification.md) for commands, environment,
-and scope:
-
-| Check | Result for the committed snapshot |
-| --- | --- |
-| Release configuration and build | Passed |
-| CTest | 27/27 passed |
-| Release-tool unit tests | 118/118 passed |
-| Simulator Python / JavaScript tests | 28/28 and 3/3 passed |
-| Simulator Protobuf compatibility check | Passed |
-| Ubuntu 24.04 Quality CI | Repository checks, QML, native build, and CTest passed |
-
-The baseline does not cover Windows, long-running use in a real Linux desktop session, the real
-competition system, live network degradation, or full field actions. Ubuntu 24.04 currently covers
-the CI build and automated tests. Interviews, screenshots, and prior competition use do not replace
-those checks.
+Quality CI runs repository checks, QML checks, a native build, CTest, release-tool tests, and
+simulator tests on Ubuntu 24.04. Windows, long-running Linux desktop use, the real competition
+system, network degradation, and full field actions require verification in their target
+environments. The Chinese [verification guide](docs/development/verification.md) lists commands,
+applicable environments, and reference records.
 
 ## What you can learn from the project
 
-The repository preserves more than the final interface. It also shows how a real system develops
-clearer boundaries and stronger evidence over time:
+The repository combines a working interface with architecture notes, key data paths, and
+verification material. Useful study topics include:
 
 - **End-to-end state flow:** how an MQTT/Protobuf message enters the networking layer, updates
   `GameData`, and drives Widgets and QML.
@@ -340,24 +322,23 @@ The project uses the MIT License. By contributing code, documentation, or assets
 you have the right to provide them and agree that the maintainers may distribute them under the
 project license. Existing third-party license and attribution requirements still apply.
 
-## Current status and known limitations
+## Release contents and scope
 
-The repository has completed engineering cleanup, authorization registration, and release checks
-for its first source release. Platform and distribution limitations remain explicit:
+The project is distributed as source code. Follow the [Quick start](#quick-start) to install the
+dependencies and build it locally. The repository does not provide prebuilt macOS, Windows, or Linux
+installers, or a simulator wheel.
 
-The first public release is source-only and must be built using this guide. No validated macOS,
-Windows, or Linux installer, nor a simulator wheel, is currently provided.
-
-| Item | Current state | Impact on users |
+| Item | Included content | Usage note |
 | --- | --- | --- |
 | Project license | MIT | Source code may be used, modified, and redistributed under [LICENSE](LICENSE) |
 | Distribution mode | Source archive only | No ready-to-run client installer or simulator wheel is provided |
-| Asset rights | Current ten snapshots approved | Approval covers only the exact snapshots in the asset register; changes require review |
-| Public history | The first release uses a reviewed root snapshot | Internal development history, task records, and local logs do not ship with the repository |
-| Public simulator tests | Python and JavaScript tests are provided | Broker, video, and client rendering still require separate end-to-end evidence |
-| Platform and field verification | Still incomplete | The committed baseline cannot be generalized to every OS, network, or competition environment |
+| Asset rights | Ten asset snapshots are listed in the public register | Clearance applies to the fixed snapshots recorded in [ASSET_LICENSES.md](ASSET_LICENSES.md) |
+| Repository history | The public repository starts from a reviewed source snapshot | Internal development records, task files, and local logs are outside the open-source release |
+| Simulator tests | Python and JavaScript tests are included | Broker, video, and client rendering need separate end-to-end checks |
+| Verification scope | Local macOS build and Ubuntu 24.04 CI | Other systems, networks, and competition environments should be checked under their deployment conditions |
 
 See the Chinese [release and packaging contract](docs/maintainers/packaging-contract.md) for release
 modes and acceptance conditions, and [ASSET_LICENSES.md](ASSET_LICENSES.md) for asset status.
-Continue from the [documentation index](docs/README.md) (Chinese) to study the design, or review the
-contribution and security policies before preparing a change.
+Use the [Quick start](#quick-start) to build the project, or continue from the Chinese
+[documentation index](docs/README.md) to study the design. Read the contribution and security
+policies before preparing a change.

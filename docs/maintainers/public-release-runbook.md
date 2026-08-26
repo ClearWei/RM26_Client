@@ -132,7 +132,7 @@ python3 tools/release/generate_checksums.py \
 ```
 
 许可证未确认时不得用 `NOASSERTION` 的内部复核 SBOM 代替开源授权。首个源码归档暂不签名，
-具体边界见[首个源码发行版签名策略](signing-policy.md)。
+具体边界见[源码发行物签名策略](signing-policy.md)。
 
 ### 二进制模式
 

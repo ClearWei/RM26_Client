@@ -1,14 +1,10 @@
-# Protobuf 协议单源收敛记录
+# Protobuf 单一 Schema 维护说明
 
-> 状态：单源收敛已完成，全量官方字段审计持续进行
-> 完成日期：2026-08-23
+生产客户端与 Python 模拟器使用同一份 canonical schema。协议语义以团队核验的 RoboMaster
+2026 通信协议 V2.0.0 为第一真相源；版本、官方入口和校验值见
+[官方资料索引](../references/official-materials.md)。字段审计和真实赛事环境联调按各自证据单独记录。
 
-本文记录生产客户端与 Python 模拟器从双 schema 收敛到单一 canonical schema 的结果。协议语义
-仍以团队核验的 RoboMaster 2026 通信协议 V2.0.0 为第一真相源；版本、官方入口和校验值见
-[官方资料索引](../references/official-materials.md)。完成单源生成不等于已经对全部官方消息做完
-字段审计，也不替代真实赛事环境联调。
-
-## 当前结构
+## 代码结构
 
 | 角色 | 文件 | 维护方式 |
 | --- | --- | --- |
@@ -16,10 +12,10 @@
 | C++ 生成代码 | 构建目录中的 `robomaster.pb.cc/.h` | CMake 在构建时从 canonical schema 生成 |
 | Python 生成代码 | `sim/robomaster_pb2.py` | 由仓库生成脚本从 canonical schema 生成并提交 |
 
-原 `sim/robomaster.proto` 已删除。模拟器不再维护协议子集；需要新增或修正消息时，先修改
-canonical schema，再同时验证 C++ 与 Python。
+模拟器不维护单独的协议子集。新增或修正消息时，先修改 canonical schema，再同时验证 C++ 与
+Python 生成代码。
 
-## 本轮校正的四个消息
+## Wire 兼容说明
 
 核验依据是 V2.0.0 的 2.2.3、2.2.14、2.2.21 和 2.2.30 节：
 
@@ -42,7 +38,7 @@ canonical schema，再同时验证 C++ 与 Python。
 python3 tools/release/generate_sim_protobuf.py
 ```
 
-当前提交使用 `protoc 33.2`，生成代码要求 `protobuf>=6.33.2,<7`。日常 Quality CI 运行：
+提交的 Python 生成代码基于 `protoc 33.2`，要求 `protobuf>=6.33.2,<7`。Quality CI 运行：
 
 ```bash
 python3 tools/release/check_sim_protobuf_runtime.py
@@ -57,21 +53,20 @@ python3 tools/release/check_sim_protobuf_runtime.py
 5. 核对生成器最低 runtime、两份 Python 依赖声明和当前实际 runtime；
 6. 真实导入 pb2，让 Protobuf 自带的兼容检查生效。
 
-## 回归证据
+## 兼容性检查
 
-| 层级 | 证据 | 结果 |
-| --- | --- | --- |
-| Descriptor | Python/C++ 检查四个消息的字段、编号和 presence | 通过 |
-| Wire golden | `GameStatus`、`Buff`、`AssemblyCommand`、`SentryStatusSync` 双端字节测试 | 通过 |
-| 模拟器行为 | fake sink 检查未结算哨兵值、最终结果和 `is_powered` | 通过 |
-| Python | 模拟器测试 22 项 | 通过 |
-| C++ | 客户端重新生成、编译及四项协议相关 CTest | 通过 |
-| 本机链路 | 独立回环 Broker + devtools 客户端 + 模拟器 publisher | 连接、阶段、倒计时和比分通过 |
+| 层级 | 检查内容 |
+| --- | --- |
+| Descriptor | Python/C++ 检查四个消息的字段、编号和 presence |
+| Wire golden | `GameStatus`、`Buff`、`AssemblyCommand`、`SentryStatusSync` 双端字节测试 |
+| 模拟器行为 | fake sink 检查未结算哨兵值、最终结果和 `is_powered` |
+| Python | 模拟器赛事推进与消息测试 |
+| C++ | 客户端生成、编译及协议相关 CTest |
 
-本机链路只使用 `127.0.0.1`，没有连接赛事引擎，也没有执行需要现场授权的装配指令。装配命令的
-explicit-zero 兼容性由 C++/Python wire golden 证明；真实赛事动作仍应在操作者明确授权后验证。
+装配命令的 explicit-zero 兼容性由 C++/Python wire golden 检查。真实赛事动作必须在操作者明确
+授权后验证。
 
-## 后续边界
+## 维护规则
 
 - 继续对 V2.0.0 全部 MQTT message 做字段类型和 optional presence 审计；任何线格式变化都补
   descriptor 与 golden payload。

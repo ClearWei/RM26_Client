@@ -20,14 +20,11 @@ Copy-Item config.example.json config.json -Force
 python tools/release/check_example_config.py config.json
 ```
 
-`config.example.json` 是公开模板，可以提交；`config.json` 是本地运行文件，应由 Git 忽略，
-不要提交。示例检查器会要求回环地址、仓库相对路径和中性身份，因此它适合检查“本机安全
-配置”，不适合拿来验证现场配置。
+`config.example.json` 是可提交的公开模板；本地 `config.json` 由 Git 忽略。示例检查器核对回环
+地址、相对路径和中性身份，现场配置应在受控环境单独校验。
 
-建议在第一次运行 CMake 配置前完成复制。根目录没有 `config.json` 时，CMake 会用
-`config.example.json` 在构建目录生成安全配置，因此干净克隆仍可构建；主动复制一份的好处是
-本地修改更直观。构建流程会把最终运行配置放到可执行文件旁边。修改网络或视频参数后，最稳妥的
-做法是重新构建或同步配置，并重启客户端。
+缺少本地配置时，CMake 会用公开模板生成构建目录中的安全配置。需要调整网络或视频参数时，
+先复制模板，并在修改后重新构建或同步配置，再重启客户端。
 
 ### Docker 配置
 
@@ -92,8 +89,7 @@ cp config.example.json config.json
 
 ## 字段对照
 
-下表中的“代码回退值”来自当前 `ConfigManager`，与公开示例值是两个概念。只要完整复制示例，
-运行时通常不会触发这些回退值。
+下表中的“代码回退值”只在字段缺失或无效时使用；完整复制公开示例时通常不会触发。
 
 ### `app_settings`、`window` 与 `ui_text`
 
