@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 项目自制的警戒标记，不依赖字体或第三方图标库。 -->
+  <path d="M32 7L59 55H5L32 7Z" fill="#FFB340" fill-opacity="0.22" stroke="#FFB340" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M32 23V38" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="32" cy="47" r="3" fill="#FFFFFF"/>
+</svg>

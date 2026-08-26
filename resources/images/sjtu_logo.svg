@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="20" cy="20" r="18" fill="#003366" stroke="#FFD700" stroke-width="2"/>
+  <text x="20" y="15" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="8" font-weight="bold">交大</text>
+  <text x="20" y="27" text-anchor="middle" fill="#FFD700" font-family="Arial" font-size="6">SJTU</text>
+</svg>

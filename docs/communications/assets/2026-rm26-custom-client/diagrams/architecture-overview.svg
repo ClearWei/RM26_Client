@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">自定义客户端总体架构</title>
+  <desc id="desc">展示正式赛事数据、主 HEVC 图传、辅助 H.264 相机从接入到统一状态及界面呈现的主要链路。</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #667085; }
+      .lane-title { font-size: 22px; font-weight: 700; }
+      .box-title { font-size: 22px; font-weight: 650; }
+      .box-sub { font-size: 16px; fill: #667085; }
+      .note { font-size: 16px; fill: #475467; }
+      .lane { fill: #f8fafc; stroke: #d0d5dd; stroke-width: 2; }
+      .box { fill: #ffffff; stroke: #344054; stroke-width: 2.2; rx: 10; }
+      .data { fill: #eff8ff; stroke: #1570ef; }
+      .video { fill: #f4f3ff; stroke: #6938ef; }
+      .state { fill: #ecfdf3; stroke: #039855; }
+      .ui { fill: #fff7ed; stroke: #f79009; }
+      .arrow { fill: none; stroke: #344054; stroke-width: 3; marker-end: url(#arrow); }
+      .control { fill: none; stroke: #667085; stroke-width: 3; stroke-dasharray: 10 8; marker-end: url(#arrow-muted); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#344054"/>
+    </marker>
+    <marker id="arrow-muted" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#667085"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1000" fill="#ffffff"/>
+  <text x="56" y="58" class="title">自定义客户端总体架构</text>
+  <text x="56" y="88" class="subtitle">按当前源码整理的主要运行链路；历史兼容模拟入口未画入正式赛事主链路</text>
+
+  <rect x="36" y="120" width="1528" height="170" class="lane"/>
+  <text x="62" y="158" class="lane-title">数据来源</text>
+  <rect x="205" y="155" width="335" height="100" class="box data"/>
+  <text x="372" y="196" text-anchor="middle" class="box-title">赛事消息与机器人状态</text>
+  <text x="372" y="226" text-anchor="middle" class="box-sub">MQTT / UDP · Protobuf</text>
+  <rect x="640" y="155" width="300" height="100" class="box video"/>
+  <text x="790" y="196" text-anchor="middle" class="box-title">主图传</text>
+  <text x="790" y="226" text-anchor="middle" class="box-sub">UDP 分片 · HEVC</text>
+  <rect x="1040" y="155" width="330" height="100" class="box video"/>
+  <text x="1205" y="196" text-anchor="middle" class="box-title">辅助相机</text>
+  <text x="1205" y="226" text-anchor="middle" class="box-sub">CustomByteBlock · H.264</text>
+  <rect x="1400" y="165" width="130" height="80" class="box" stroke-dasharray="8 7"/>
+  <text x="1465" y="196" text-anchor="middle" class="box-title">sim/</text>
+  <text x="1465" y="222" text-anchor="middle" class="box-sub">协议 / 两路视频</text>
+
+  <rect x="36" y="320" width="1528" height="205" class="lane"/>
+  <text x="62" y="358" class="lane-title">接入与处理</text>
+  <rect x="205" y="375" width="335" height="105" class="box data"/>
+  <text x="372" y="417" text-anchor="middle" class="box-title">NetworkManager</text>
+  <text x="372" y="448" text-anchor="middle" class="box-sub">接入、协议解析与消息路由</text>
+  <rect x="610" y="375" width="360" height="105" class="box video"/>
+  <text x="790" y="413" text-anchor="middle" class="box-title">VideoReceiver → HevcDecoder</text>
+  <text x="790" y="444" text-anchor="middle" class="box-sub">批量收包、帧重组与低时延解码</text>
+  <rect x="1040" y="360" width="440" height="135" class="box video"/>
+  <text x="1260" y="399" text-anchor="middle" class="box-title">NetworkManager → VideoReceiver</text>
+  <text x="1260" y="429" text-anchor="middle" class="box-sub">feedH264Frame · 码流恢复</text>
+  <text x="1260" y="460" text-anchor="middle" class="box-sub">H264Decoder</text>
+
+  <rect x="36" y="555" width="1528" height="175" class="lane"/>
+  <text x="62" y="593" class="lane-title">状态与规则</text>
+  <rect x="240" y="605" width="355" height="90" class="box state"/>
+  <text x="417" y="643" text-anchor="middle" class="box-title">统一比赛状态 · GameData</text>
+  <text x="417" y="672" text-anchor="middle" class="box-sub">正式赛事事实与结构化信号</text>
+  <rect x="685" y="605" width="360" height="90" class="box state"/>
+  <text x="865" y="643" text-anchor="middle" class="box-title">界面状态与事件规则</text>
+  <text x="865" y="672" text-anchor="middle" class="box-sub">MainWindow · 本地时机判断</text>
+  <rect x="1135" y="605" width="300" height="90" class="box state"/>
+  <text x="1285" y="643" text-anchor="middle" class="box-title">视频帧状态</text>
+  <text x="1285" y="672" text-anchor="middle" class="box-sub">最新帧与辅助图像信号</text>
+
+  <rect x="36" y="760" width="1528" height="170" class="lane"/>
+  <text x="62" y="798" class="lane-title">界面与提示</text>
+  <rect x="200" y="815" width="285" height="80" class="box ui"/>
+  <text x="342" y="855" text-anchor="middle" class="box-title">QML 指挥屏</text>
+  <rect x="550" y="815" width="285" height="80" class="box ui"/>
+  <text x="692" y="855" text-anchor="middle" class="box-title">事件与本地语音</text>
+  <rect x="900" y="815" width="285" height="80" class="box ui"/>
+  <text x="1042" y="855" text-anchor="middle" class="box-title">主图传 Widgets</text>
+  <rect x="1250" y="805" width="285" height="100" class="box ui"/>
+  <text x="1392" y="846" text-anchor="middle" class="box-title">辅助画面</text>
+  <text x="1392" y="876" text-anchor="middle" class="box-sub">预览或部署英雄全屏</text>
+
+  <path d="M372 255 V375" class="arrow"/>
+  <path d="M790 255 V375" class="arrow"/>
+  <path d="M1205 255 V360" class="arrow"/>
+  <path d="M1400 185 H1385 V133 H372 V155" class="control"/>
+  <path d="M1400 205 H1378 V141 H790 V155" class="control"/>
+  <path d="M1400 225 H1371 V149 H1205 V155" class="control"/>
+  <path d="M372 480 V605" class="arrow"/>
+  <path d="M790 480 V555 H1285 V605" class="arrow"/>
+  <path d="M1260 495 V605" class="arrow"/>
+  <path d="M595 650 H685" class="arrow"/>
+  <path d="M417 695 V780 H342 V815" class="arrow"/>
+  <path d="M865 695 V775 H692 V815" class="arrow"/>
+  <path d="M1285 695 V770 H1042 V815" class="arrow"/>
+  <path d="M1285 695 V805 H1392" class="arrow"/>
+  <path d="M865 695 V745 H1110 V805 H1392" class="control"/>
+
+  <line x1="72" y1="965" x2="130" y2="965" class="arrow"/>
+  <text x="148" y="971" class="note">数据或事件</text>
+  <line x1="300" y1="965" x2="358" y2="965" class="control"/>
+  <text x="376" y="971" class="note">界面控制或模拟输入</text>
+</svg>

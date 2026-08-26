@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect x="20" y="16" width="24" height="32" rx="4" fill="#666666" stroke="#444444" stroke-width="2"/>
+  <circle cx="28" cy="26" r="3" fill="#FF0000"/>
+  <circle cx="36" cy="26" r="3" fill="#FF0000"/>
+  <rect x="24" y="34" width="16" height="6" rx="2" fill="#333"/>
+  <rect x="26" y="42" width="12" height="4" rx="1" fill="#888"/>
+  <text x="32" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#333">SENTRY</text>
+</svg>

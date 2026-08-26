@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleExecutable</key>
+    <string>RoboMasterClient2025</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.fudan.ega.robomaster2025</string>
+    <key>CFBundleName</key>
+    <string>RoboMasterClient2025</string>
+    <key>CFBundleDisplayName</key>
+    <string>复旦大学 EGA 战队 RoboMaster 2026 自定义客户端</string>
+    <key>CFBundleVersion</key>
+    <string>1.0.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>CFBundleIconFile</key>
+    <string>app_icon.icns</string>
+</dict>
+</plist>

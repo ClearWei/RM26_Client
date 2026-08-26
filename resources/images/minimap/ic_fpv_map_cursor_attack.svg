@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 项目自制的攻击标记，粗线条在小尺寸地图图例中仍能辨认。 -->
+  <circle cx="32" cy="32" r="24" fill="#F25B6A" fill-opacity="0.18" stroke="#F25B6A" stroke-width="4"/>
+  <circle cx="32" cy="32" r="8" stroke="#FFFFFF" stroke-width="4"/>
+  <path d="M32 8V19M32 45V56M8 32H19M45 32H56" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="3" fill="#FFFFFF"/>
+</svg>

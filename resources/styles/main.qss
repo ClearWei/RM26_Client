@@ -1,0 +1,91 @@
+/* Main stylesheet for RoboMaster Client */
+
+/* Basic styling for main window */
+QMainWindow {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: "Arial", sans-serif;
+    font-size: 12px;
+}
+
+/* General widget styling */
+QWidget {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+/* Label styling */
+QLabel {
+    color: #ffffff;
+    background-color: transparent;
+    border: none;
+}
+
+/* Button styling */
+QPushButton {
+    background-color: #333333;
+    border: 1px solid #555555;
+    border-radius: 4px;
+    padding: 8px 16px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+QPushButton:hover {
+    background-color: #444444;
+    border-color: #666666;
+}
+
+QPushButton:pressed {
+    background-color: #222222;
+    border-color: #444444;
+}
+
+/* Health bar specific styling */
+.health-bar {
+    border: 2px solid #333333;
+    border-radius: 8px;
+    background-color: #1a1a1a;
+}
+
+/* Robot status styling */
+.robot-status {
+    border: 1px solid #444444;
+    border-radius: 6px;
+    background-color: #2a2a2a;
+    padding: 4px;
+}
+
+/* Scoreboard styling */
+.scoreboard {
+    background-color: #0a0a0a;
+    border: 2px solid #333333;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+/* Team colors */
+.red-team {
+    color: #ff4444;
+}
+
+.blue-team {
+    color: #4444ff;
+}
+
+/* Status indicators */
+.status-normal {
+    color: #44ff44;
+}
+
+.status-warning {
+    color: #ffff44;
+}
+
+.status-danger {
+    color: #ff4444;
+}
+
+.status-offline {
+    color: #888888;
+}

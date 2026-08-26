@@ -1,0 +1,102 @@
+{
+    "app_settings": {
+        "client_name": "RM26 Custom Client",
+        "version": "1.0.0"
+    },
+    "window": {
+        "min_width": 1280,
+        "min_height": 720,
+        "default_width": 1920,
+        "default_height": 1080,
+        "fullscreen": true,
+        "_comment": "当前主程序固定全屏启动；此字段为兼容配置，min_width 和 min_height 仍会生效"
+    },
+    "ui_text": {
+        "window_title": "RM26 Custom Client",
+        "start_game": "开始比赛",
+        "pause_game": "暂停比赛",
+        "quit_game": "退出程序",
+        "connect_server": "连接服务器",
+        "disconnect_server": "断开连接",
+        "status_connected": "已连接",
+        "status_disconnected": "未连接"
+    },
+    "network": {
+        "server_ip": "127.0.0.1",
+        "server_port": 3333,
+        "client_port": 3333,
+        "video_port": 3334,
+        "mqtt_broker": "127.0.0.1",
+        "mqtt_port": 3333,
+        "client_robot_id": 1,
+        "_comment": "示例只连接本机；机器人身份只接受红方 1-7 或蓝方 101-107，现场值不要提交"
+    },
+    "video": {
+        "default_path": "",
+        "stream_url": "udp://0.0.0.0:3334",
+        "resolution": "1280x720",
+        "fps": 60,
+        "industrial_camera_grid": false,
+        "_comment": "stream_url 用于主图传 UDP 监听；工业相机图传复用 MQTT，不需要另设端口"
+    },
+    "robots": {
+        "infantry": {
+            "description": "步兵机器人配置",
+            "ui_layout": "standard",
+            "modules": ["shooter", "gimbal", "chassis"],
+            "key_bindings": {
+                "shoot": "Space",
+                "boost": "Shift",
+                "reload": "R"
+            }
+        },
+        "hero": {
+            "description": "英雄机器人配置",
+            "ui_layout": "heavy",
+            "modules": ["shooter_42mm", "gimbal", "chassis"],
+            "key_bindings": {
+                "shoot": "Space",
+                "shield": "E",
+                "reload": "R"
+            }
+        },
+        "engineer": {
+            "description": "工程机器人配置",
+            "ui_layout": "utility",
+            "modules": ["robotic_arm", "chassis"],
+            "key_bindings": {
+                "grab": "G",
+                "lift": "H",
+                "exchange": "X"
+            }
+        },
+        "sentry": {
+            "description": "哨兵机器人配置",
+            "ui_layout": "autonomous",
+            "modules": ["shooter", "gimbal", "chassis", "radar"],
+            "key_bindings": {
+                "auto_mode": "F1",
+                "manual_override": "F2"
+            }
+        },
+        "aerial": {
+            "description": "空中机器人配置",
+            "ui_layout": "flight",
+            "modules": ["shooter", "gimbal", "flight_ctrl"],
+            "key_bindings": {
+                "ascend": "Space",
+                "descend": "Ctrl"
+            }
+        }
+    },
+    "ar_overlay": {
+        "enabled": false,
+        "model_path": "",
+        "confidence_threshold": 0.5,
+        "nms_threshold": 0.4,
+        "smoothing_factor": 0.3,
+        "max_missed_frames": 10,
+        "detection_interval_ms": 33,
+        "_comment": "示例不附带模型；启用前请自行提供已获授权的仓库相对路径"
+    }
+}

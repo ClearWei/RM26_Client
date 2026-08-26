@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "note": "新增顶层目录或根文件前，先确认它属于公开项目，再更新本白名单。",
+  "directories": [
+    ".github",
+    "cmake",
+    "docker",
+    "docs",
+    "resources",
+    "scripts",
+    "sim",
+    "src",
+    "tests",
+    "tools"
+  ],
+  "files": [
+    ".dockerignore",
+    ".editorconfig",
+    ".env.docker.example",
+    ".gitattributes",
+    ".gitignore",
+    "ASSET_LICENSES.md",
+    "CHANGELOG.md",
+    "CMakeLists.txt",
+    "CMakePresets.json",
+    "CODE_OF_CONDUCT.md",
+    "CONTRIBUTING.md",
+    "Info.plist",
+    "README.en.md",
+    "README.md",
+    "ROADMAP.md",
+    "SECURITY.md",
+    "SUPPORT.md",
+    "THIRD_PARTY_NOTICES.md",
+    "config.example.json",
+    "docker-compose.field.yml",
+    "docker-compose.yml",
+    "resources.qrc",
+    "run_docker.sh",
+    "run_test.sh",
+    "videoplayer.sh"
+  ]
+}

@@ -1,0 +1,420 @@
+/* RoboMaster Client Dark Theme */
+
+/* Main Window */
+QMainWindow {
+    background-image: url(:/images/battlefield_background.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: #ffffff;
+    font-family: "Arial", "Microsoft YaHei", sans-serif;
+}
+
+/* Central Widget with overlay */
+QMainWindow::centralWidget {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* General Widget Styling */
+QWidget {
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+}
+
+/* Labels */
+QLabel {
+    color: #ffffff;
+    font-weight: normal;
+    background-color: transparent;
+}
+
+/* Health Bar Styling */
+.HealthBarWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(26, 26, 46, 200),
+                                stop: 1 rgba(16, 16, 30, 200));
+    border: 2px solid rgba(255, 255, 255, 50);
+    border-radius: 8px;
+}
+
+/* Robot Status Widget */
+.RobotStatusWidget {
+    background: rgba(26, 26, 46, 150);
+    border: 1px solid rgba(255, 255, 255, 30);
+    border-radius: 6px;
+    padding: 5px;
+}
+
+/* Score Board */
+.ScoreBoardWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(26, 26, 46, 200),
+                                stop: 1 rgba(16, 16, 30, 200));
+    border: 2px solid rgba(255, 255, 255, 80);
+    border-radius: 10px;
+}
+
+/* Crosshair Widget */
+.CrosshairWidget {
+    background: transparent;
+}
+
+/* Heat Ring Widget */
+.HeatRingWidget {
+    background: transparent;
+}
+
+/* Panel Widgets */
+.TabPanelWidget, .SettingsPanelWidget, .HelpPanelWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(26, 26, 46, 240),
+                                stop: 1 rgba(16, 16, 30, 240));
+    border: 2px solid rgba(255, 255, 255, 100);
+    border-radius: 12px;
+}
+
+/* Buttons */
+QPushButton {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #16213e, stop: 1 #0f1a2e);
+    border: 2px solid #0f3460;
+    border-radius: 6px;
+    color: #ffffff;
+    padding: 8px 16px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #0f3460, stop: 1 #16213e);
+    border-color: #e94560;
+}
+
+QPushButton:pressed {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #0a2647, stop: 1 #0f1a2e);
+    border-color: #ff6b7a;
+}
+
+/* Input Fields */
+QLineEdit, QTextEdit, QSpinBox, QDoubleSpinBox {
+    background: rgba(26, 26, 46, 180);
+    border: 2px solid rgba(255, 255, 255, 50);
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 12px;
+}
+
+QLineEdit:focus, QTextEdit:focus, QSpinBox:focus, QDoubleSpinBox:focus {
+    border-color: #e94560;
+}
+
+/* Combo Box */
+QComboBox {
+    background: rgba(26, 26, 46, 180);
+    border: 2px solid rgba(255, 255, 255, 50);
+    border-radius: 4px;
+    color: #ffffff;
+    padding: 5px;
+    font-size: 12px;
+}
+
+QComboBox:hover {
+    border-color: #e94560;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+
+QComboBox::down-arrow {
+    image: none;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid #ffffff;
+}
+
+/* Sliders */
+QSlider::groove:horizontal {
+    background: rgba(255, 255, 255, 50);
+    height: 6px;
+    border-radius: 3px;
+}
+
+QSlider::handle:horizontal {
+    background: #e94560;
+    border: 2px solid #ffffff;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    margin: -5px 0;
+}
+
+QSlider::handle:horizontal:hover {
+    background: #ff6b7a;
+}
+
+/* Progress Bars */
+QProgressBar {
+    background: rgba(26, 26, 46, 180);
+    border: 2px solid rgba(255, 255, 255, 50);
+    border-radius: 4px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+QProgressBar::chunk {
+    background: qlineargradient(x1: 0, y1: 0, x2: 1, y2: 0,
+                                stop: 0 #e94560, stop: 1 #ff6b7a);
+    border-radius: 2px;
+}
+
+/* Scroll Bars */
+QScrollBar:vertical {
+    background: rgba(26, 26, 46, 100);
+    width: 12px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background: rgba(255, 255, 255, 100);
+    border-radius: 6px;
+    min-height: 20px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: rgba(255, 255, 255, 150);
+}
+
+/* Team Colors */
+.RedTeam {
+    color: #ff4757;
+    border-color: #ff4757;
+}
+
+.BlueTeam {
+    color: #3742fa;
+    border-color: #3742fa;
+}
+
+/* Status Colors */
+.StatusNormal {
+    color: #2ed573;
+}
+
+.StatusWarning {
+    color: #ffa502;
+}
+
+.StatusDanger {
+    color: #ff4757;
+}
+
+.StatusInvincible {
+    color: #ffd700;
+    font-weight: bold;
+}
+
+/* Animation Classes */
+.BlinkingText {
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+/* Message Widget */
+.MessageWidget {
+    background: rgba(26, 26, 46, 200);
+    border: 1px solid rgba(255, 255, 255, 30);
+    border-radius: 6px;
+    padding: 10px;
+}
+
+/* Marquee Label */
+.MarqueeLabel {
+    background: rgba(16, 16, 30, 150);
+    border: 1px solid rgba(255, 255, 255, 20);
+    border-radius: 4px;
+    padding: 5px;
+    font-size: 11px;
+}
+
+/* Module Status Widget Enhanced Styles */
+.ModuleStatusWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(26, 26, 46, 220),
+                                stop: 1 rgba(16, 16, 30, 220));
+    border: 2px solid rgba(0, 255, 255, 60);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.ModuleItem {
+    background: rgba(26, 26, 46, 180);
+    border: 1px solid rgba(255, 255, 255, 40);
+    border-radius: 8px;
+    padding: 8px;
+    margin: 2px;
+}
+
+.ModuleItem:hover {
+    background: rgba(36, 36, 56, 200);
+    border-color: rgba(0, 255, 255, 80);
+}
+
+.ModuleNormal {
+    border-color: rgba(46, 213, 115, 100);
+    background: rgba(46, 213, 115, 20);
+}
+
+.ModuleWarning {
+    border-color: rgba(255, 165, 2, 100);
+    background: rgba(255, 165, 2, 20);
+}
+
+.ModuleDanger {
+    border-color: rgba(255, 71, 87, 100);
+    background: rgba(255, 71, 87, 20);
+}
+
+.ModuleOffline {
+    border-color: rgba(136, 136, 136, 100);
+    background: rgba(136, 136, 136, 20);
+}
+
+/* Robot Icon Widget Enhanced Styles */
+.RobotIconWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(26, 26, 46, 200),
+                                stop: 1 rgba(16, 16, 30, 200));
+    border: 2px solid rgba(255, 255, 255, 50);
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.RobotIconWidget:hover {
+    border-color: rgba(0, 255, 255, 80);
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(36, 36, 56, 220),
+                                stop: 1 rgba(26, 26, 40, 220));
+}
+
+.RobotAlive {
+    border-color: rgba(46, 213, 115, 100);
+}
+
+.RobotDead {
+    border-color: rgba(255, 71, 87, 100);
+    background: rgba(255, 71, 87, 15);
+}
+
+.RobotInvincible {
+    border-color: rgba(255, 215, 0, 120);
+    background: rgba(255, 215, 0, 20);
+}
+
+.RobotReviving {
+    border-color: rgba(255, 165, 2, 100);
+    background: rgba(255, 165, 2, 20);
+}
+
+/* Crosshair Widget Enhanced Styles */
+.CrosshairWidget {
+    background: rgba(0, 0, 0, 100);
+    border: 1px solid rgba(0, 255, 255, 60);
+    border-radius: 50px;
+}
+
+/* Heat Ring Widget Enhanced Styles */
+.HeatRingWidget {
+    background: rgba(0, 0, 0, 120);
+    border: 2px solid rgba(0, 255, 255, 40);
+    border-radius: 60px;
+}
+
+/* Game Result Widget Enhanced Styles */
+.GameResultWidget {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(0, 0, 0, 200),
+                                stop: 1 rgba(26, 26, 46, 200));
+    border: 3px solid rgba(0, 255, 255, 80);
+    border-radius: 15px;
+}
+
+.VictoryResult {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(46, 213, 115, 100),
+                                stop: 1 rgba(26, 26, 46, 200));
+    border-color: rgba(46, 213, 115, 120);
+}
+
+.DefeatResult {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(255, 71, 87, 100),
+                                stop: 1 rgba(26, 26, 46, 200));
+    border-color: rgba(255, 71, 87, 120);
+}
+
+/* Panel Enhanced Styles */
+.SettingsPanel, .HelpPanel, .TabPanel {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 rgba(26, 26, 46, 240),
+                                stop: 1 rgba(16, 16, 30, 240));
+    border: 2px solid rgba(0, 255, 255, 80);
+    border-radius: 12px;
+}
+
+/* Glow Effects */
+.GlowEffect {
+    border: 2px solid rgba(0, 255, 255, 100);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 50);
+}
+
+.RedGlow {
+    border-color: rgba(255, 71, 87, 100);
+    box-shadow: 0 0 20px rgba(255, 71, 87, 50);
+}
+
+.BlueGlow {
+    border-color: rgba(58, 123, 213, 100);
+    box-shadow: 0 0 20px rgba(58, 123, 213, 50);
+}
+
+.GreenGlow {
+    border-color: rgba(46, 213, 115, 100);
+    box-shadow: 0 0 20px rgba(46, 213, 115, 50);
+}
+
+.YellowGlow {
+    border-color: rgba(255, 215, 0, 100);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 50);
+}
+
+/* Pulse Animation */
+.PulseAnimation {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* Breathing Animation */
+.BreathingAnimation {
+    animation: breathing 3s ease-in-out infinite;
+}
+
+@keyframes breathing {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}

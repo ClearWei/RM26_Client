@@ -1,0 +1,64 @@
+{
+  "schema_version": 2,
+  "cpp_roots": [
+    "src"
+  ],
+  "sounds": {
+    "root": "resources/sounds",
+    "extensions": [
+      ".m4a",
+      ".mov",
+      ".mp3",
+      ".wav"
+    ],
+    "qrc_manifest": "resources.qrc",
+    "optional": {
+      "paths": [
+        "resources/sounds/20game_finish.mp3",
+        "resources/sounds/2kill.wav",
+        "resources/sounds/2自检.mp3",
+        "resources/sounds/3-1比赛开始.mp3",
+        "resources/sounds/3kill.wav",
+        "resources/sounds/4kill.wav",
+        "resources/sounds/5kill.wav",
+        "resources/sounds/dead.wav",
+        "resources/sounds/firstblood.wav",
+        "resources/sounds/gameBg.mp3",
+        "resources/sounds/game_finish.mp3",
+        "resources/sounds/min3bgm.mp3"
+      ],
+      "evidence": "docs/decisions/0004-optional-audio-pack.md"
+    },
+    "dynamic_templates": [
+      {
+        "source": "src/widgets/BattleMessageWidget.cpp",
+        "literal": "qrc:/sounds/%1kill.wav",
+        "values": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ]
+      }
+    ]
+  },
+  "dynamic_resources": [
+    {
+      "id": "game-result-animations",
+      "source": "src/widgets/GameResultWidget.cpp",
+      "source_root": "resources/images/resultpanel",
+      "variants": [
+        "blue_win_zh",
+        "red_win_zh",
+        "abnormal_termination_zh"
+      ],
+      "extensions": [
+        ".png"
+      ],
+      "required_delivery": [
+        "install"
+      ],
+      "install_manifest": "CMakeLists.txt"
+    }
+  ]
+}

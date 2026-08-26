@@ -1,0 +1,361 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="rune_tab/rune_tab_red.png">resources/images/rune_tab/rune_tab_red.png</file>
+        <file alias="rune_tab/key_able.png">resources/images/rune_tab/key_able.png</file>
+        <file alias="rune_tab/key_unable.png">resources/images/rune_tab/key_unable.png</file>
+        <file alias="rune_tab/rune_tab_bg.png">resources/images/rune_tab/rune_tab_bg.png</file>
+        <file alias="rune_tab/rune_tab_blue.png">resources/images/rune_tab/rune_tab_blue.png</file>
+        <file alias="rune_tab/rune_tab_delimiter.png">resources/images/rune_tab/rune_tab_delimiter.png</file>
+        <file alias="rune_tab/rune_tab_hit.png">resources/images/rune_tab/rune_tab_hit.png</file>
+        <file alias="rune_tab/rune_tab_hitting.png">resources/images/rune_tab/rune_tab_hitting.png</file>
+        <file alias="rune_tab/rune_tab_nothit.png">resources/images/rune_tab/rune_tab_nothit.png</file>
+        <file>resources/images/battlefield_background.svg</file>
+        <file alias="blue_robot_icon.png">resources/images/blue_robot_icon.png</file>
+        <file alias="app_icon.png">resources/images/app_icon.png</file>
+        <file alias="blue_team_logo.png">resources/images/blue_team_logo.png</file>
+        <file alias="blue_teammate_avatar_hero_adbuff.png">resources/images/blue_teammate_avatar_hero_adbuff.png</file>
+        <file>resources/images/fudan_logo.svg</file>
+        <file alias="minimap_bg.png">resources/images/base_bg_2026_fq_small.png</file>
+        <file alias="minimap_bg_red_left.png">resources/images/base_bg_2026_fq_small.png</file>
+        <file alias="minimap_bg_blue_left.png">resources/images/base_bg_2026_fq_small_blue_left.png</file>
+        <file alias="red_message_guard.png">resources/images/red_message_guard.png</file>
+        <file alias="red_robot_icon.png">resources/images/red_robot_icon.png</file>
+        <file alias="red_team_logo.png">resources/images/red_team_logo.png</file>
+        <file alias="robot_avatar.png">resources/images/robot_avatar.png</file>
+        <file alias="tactical_camera_main_default.png">resources/images/tactical_camera_main_default.png</file>
+        <file alias="tactical_camera_preview_default.png">resources/images/tactical_camera_preview_default.png</file>
+        <file alias="silo_icon_darts.png">resources/images/silo_icon_darts.png</file>
+        <file alias="silo/silo_icon_darts.png">resources/images/silo/silo_icon_darts.png</file>
+        <file alias="silo/silo_icon_aim.png">resources/images/silo/silo_icon_aim.png</file>
+        <file alias="silo/silo_icon_speed.png">resources/images/silo/silo_icon_speed.png</file>
+        <file alias="silo/silo_background_1.png">resources/images/silo/silo_background_1.png</file>
+        <file alias="silo/silo_dartstate_background.png">resources/images/silo/silo_dartstate_background.png</file>
+        <file alias="silo/silo_border_green.png">resources/images/silo/silo_border_green.png</file>
+        <file alias="silo/silo_border_red.png">resources/images/silo/silo_border_red.png</file>
+        <file alias="silo/silo_border_normal.png">resources/images/silo/silo_border_normal.png</file>
+        <file alias="silo/silo_outpost.png">resources/images/silo/silo_outpost.png</file>
+        <file alias="silo/silo_outpost_en.png">resources/images/silo/silo_outpost_en.png</file>
+        <file alias="silo/silo_defaultposition.png">resources/images/silo/silo_defaultposition.png</file>
+        <file alias="silo/silo_defaultposition_en.png">resources/images/silo/silo_defaultposition_en.png</file>
+        <file alias="silo/silo_randomposition.png">resources/images/silo/silo_randomposition.png</file>
+        <file alias="silo/silo_randomposition_en.png">resources/images/silo/silo_randomposition_en.png</file>
+        <file alias="silo/silo_background_2.png">resources/images/silo/silo_background_2.png</file>
+        <file alias="silo/silo_border_big.png">resources/images/silo/silo_border_big.png</file>
+        <file alias="silo/tab_icon_silo.png">resources/images/silo/tab_icon_silo.png</file>
+        <file alias="silo/silo_endmovingposition.png">resources/images/silo/silo_endmovingposition.png</file>
+        <file alias="silo/silo_randomconstantposition.png">resources/images/silo/silo_randomconstantposition.png</file>
+        <file alias="silo/silo_randommovingposition.png">resources/images/silo/silo_randommovingposition.png</file>
+        <file>resources/images/sjtu_logo.svg</file>
+        <file alias="top_middle_background.png">resources/images/top_mid/top_middle_background.png</file>
+        <file alias="top_middle_background_v2.png">resources/images/top_mid/top_middle_background_v2.png</file>
+        <file alias="top_left_background.png">resources/images/top_mid/top_left_background.png</file>
+        <file alias="top_right_background.png">resources/images/top_mid/top_right_background.png</file>
+        <file alias="top_mid/red_team_logo.png">resources/images/top_mid/red_team_logo.png</file>
+        <file alias="top_mid/blue_team_logo.png">resources/images/top_mid/blue_team_logo.png</file>
+        <file alias="BattleVolumn_Bg.png">resources/images/top_mid/BattleVolumn_Bg.png</file>
+        <file alias="controlzone_red_icon.png">resources/images/controlzone_red_icon.png</file>
+        <file alias="controlzone_blue_icon.png">resources/images/controlzone_blue_icon.png</file>
+        <file alias="sundry_bullet.png">resources/images/sundry_bullet.png</file>
+        <file alias="red_base_blood/bottom.png">resources/images/red_base_blood/red_base_blood_bottom.png</file>
+        <file alias="red_base_blood/middle.png">resources/images/red_base_blood/red_base_blood_middle.png</file>
+        <file alias="red_base_blood/middle_full.png">resources/images/red_base_blood/red_base_blood_middle_full.png</file>
+        <file alias="red_base_blood/middle_lowhp.png">resources/images/red_base_blood/red_base_blood_middle_lowhp_0.png</file>
+        <file alias="red_base_blood/top.png">resources/images/red_base_blood/red_base_blood_top.png</file>
+        <file alias="red_base_blood/top_full.png">resources/images/red_base_blood/red_base_blood_top_full.png</file>
+        <file alias="red_base_blood/border.png">resources/images/red_base_blood/red_base_blood_border.png</file>
+        <file alias="red_base_blood/light.png">resources/images/red_base_blood/red_base_blood_light.png</file>
+        <file alias="red_base_blood/invincible.png">resources/images/red_base_blood/red_base_blood_invincible.png</file>
+        <file alias="red_base_blood/red_base_blood_invincible.png">resources/images/red_base_blood/red_base_blood_invincible.png</file>
+        <file alias="blue_base_blood/bottom.png">resources/images/blue_base_blood/blue_base_blood_bottom.png</file>
+        <file alias="blue_base_blood/middle.png">resources/images/blue_base_blood/blue_base_blood_middle.png</file>
+        <file alias="blue_base_blood/middle_full.png">resources/images/blue_base_blood/blue_base_blood_middle_full.png</file>
+        <file alias="blue_base_blood/middle_lowhp.png">resources/images/blue_base_blood/blue_base_blood_middle_lowhp_0.png</file>
+        <file alias="blue_base_blood/top.png">resources/images/blue_base_blood/blue_base_blood_top.png</file>
+        <file alias="blue_base_blood/top_full.png">resources/images/blue_base_blood/blue_base_blood_top_full.png</file>
+        <file alias="blue_base_blood/border.png">resources/images/blue_base_blood/blue_base_blood_border.png</file>
+        <file alias="blue_base_blood/light.png">resources/images/blue_base_blood/blue_base_blood_light.png</file>
+        <file alias="blue_base_blood/invincible.png">resources/images/blue_base_blood/blue_base_blood_invincible.png</file>
+        <file alias="blue_base_blood/blue_base_blood_invincible.png">resources/images/blue_base_blood/blue_base_blood_invincible.png</file>
+        <file alias="popup_bg.png">resources/images/popup_bg.png</file>
+        <file alias="message/message_red.png">resources/images/message/message_red.png</file>
+        <file alias="message/message_blue.png">resources/images/message/message_blue.png</file>
+        <file alias="message/message_green.png">resources/images/message/message_green.png</file>
+        <file alias="message/rune_icon.png">resources/images/message/validate_icon_rune.png</file>
+        <file alias="message/validate_icon_hp.png">resources/images/message/validate_icon_hp.png</file>
+        <file alias="message/validate_icon_totalhurt.png">resources/images/message/validate_icon_totalhurt.png</file>
+        <file alias="message/validate_icon_killcount.png">resources/images/message/validate_icon_killcount.png</file>
+        <file alias="message/validate_icon_rune.png">resources/images/message/validate_icon_rune.png</file>
+        <file alias="crosshair/crosshair_bg_single.png">resources/images/crosshair/crosshair_bg_single.png</file>
+        <file alias="crosshair/crosshair_slid_circle_bg.png">resources/images/crosshair/crosshair_slid_circle_bg.png</file>
+        <file alias="crosshair/crosshair_middle.png">resources/images/crosshair/crosshair_middle.png</file>
+        <file alias="sundry_golf.png">resources/images/sundry_golf.png</file>
+        <file alias="sundry_icon.png">resources/images/sundry_icon.png</file>
+        <file alias="prep_phase_frame.png">resources/images/prep_phase_frame.png</file>
+        <file alias="message/warning_box.png">resources/images/message/warning_box.png</file>
+        <!-- 比赛结算动画 -->
+        <file>resources/images/resultpanel/abnormal_termination_zh/termination_Zh (22).png</file>
+        <file>resources/images/resultpanel/abnormal_termination_zh/termination_Zh (23).png</file>
+        <file>resources/images/resultpanel/abnormal_termination_zh/termination_Zh (24).png</file>
+        <file>resources/images/resultpanel/abnormal_termination_zh/termination_Zh (25).png</file>
+        <file>resources/images/resultpanel/abnormal_termination_zh/termination_Zh (26).png</file>
+        <file>resources/images/resultpanel/abnormal_termination_zh/termination_Zh (27).png</file>
+        <file>resources/images/resultpanel/abnormal_termination_zh/termination_Zh (28).png</file>
+    </qresource>
+    <qresource prefix="/images/minimap">
+        <file alias="blue_map_Interchange_station.png">resources/images/minimap/blue_map_Interchange_station.png</file>
+        <file alias="blue_map_airplane.png">resources/images/minimap/blue_map_airplane.png</file>
+        <file alias="blue_map_arrow.png">resources/images/minimap/blue_map_arrow.png</file>
+        <file alias="blue_map_base.png">resources/images/minimap/blue_map_base.png</file>
+        <file alias="blue_map_base_animation_1.png">resources/images/minimap/blue_map_base_animation_1.png</file>
+        <file alias="blue_map_base_animation_2.png">resources/images/minimap/blue_map_base_animation_2.png</file>
+        <file alias="blue_map_base_animation_3.png">resources/images/minimap/blue_map_base_animation_3.png</file>
+        <file alias="blue_map_base_animation_4.png">resources/images/minimap/blue_map_base_animation_4.png</file>
+        <file alias="blue_map_base_area.png">resources/images/minimap/blue_map_base_area.png</file>
+        <file alias="blue_map_dart_launch.png">resources/images/minimap/blue_map_dart_launch.png</file>
+        <file alias="blue_map_guard.png">resources/images/minimap/blue_map_guard.png</file>
+        <file alias="blue_map_outpost.png">resources/images/minimap/blue_map_outpost.png</file>
+        <file alias="blue_map_outpost_bg.png">resources/images/minimap/blue_map_outpost_bg.png</file>
+        <file alias="blue_map_robot.png">resources/images/minimap/blue_map_robot.png</file>
+        <file alias="blue_map_robot_lockbg.png">resources/images/minimap/blue_map_robot_lockbg.png</file>
+        <file alias="ic_fpv_map_cursor_attack_1.png">resources/images/minimap/ic_fpv_map_cursor_attack.svg</file>
+        <file alias="ic_fpv_map_cursor_defense_1.png">resources/images/minimap/ic_fpv_map_cursor_defense.svg</file>
+        <file alias="ic_fpv_map_cursor_warning_1.png">resources/images/minimap/ic_fpv_map_cursor_warning.svg</file>
+        <file alias="map_island_big.png">resources/images/minimap/map_island_active.png</file>
+        <file alias="map_island_blue.png">resources/images/minimap/map_island_blue.png</file>
+        <file alias="map_island_small.png">resources/images/minimap/map_island_counting.png</file>
+        <file alias="map_island_red.png">resources/images/minimap/map_island_red.png</file>
+        <file alias="map_robot_id_1.png">resources/images/minimap/map_robot_id_1.png</file>
+        <file alias="map_robot_id_2.png">resources/images/minimap/map_robot_id_2.png</file>
+        <file alias="map_robot_id_3.png">resources/images/minimap/map_robot_id_3.png</file>
+        <file alias="map_robot_id_4.png">resources/images/minimap/map_robot_id_4.png</file>
+        <file alias="map_robot_id_5.png">resources/images/minimap/map_robot_id_5.png</file>
+        <file alias="id_1.png">resources/images/minimap/map_robot_id_1.png</file>
+        <file alias="id_2.png">resources/images/minimap/map_robot_id_2.png</file>
+        <file alias="id_3.png">resources/images/minimap/map_robot_id_3.png</file>
+        <file alias="id_4.png">resources/images/minimap/map_robot_id_4.png</file>
+        <file alias="id_5.png">resources/images/minimap/map_robot_id_5.png</file>
+        <file alias="map_robot_lockline.png">resources/images/minimap/map_robot_lockline.png</file>
+        <file alias="red_map_Interchange_station.png">resources/images/minimap/red_map_Interchange_station.png</file>
+        <file alias="red_map_airplane.png">resources/images/minimap/red_map_airplane.png</file>
+        <file alias="red_map_arrow.png">resources/images/minimap/red_map_arrow.png</file>
+        <file alias="red_map_base.png">resources/images/minimap/red_map_base.png</file>
+        <file alias="red_map_base_animation_1.png">resources/images/minimap/red_map_base_animation_1.png</file>
+        <file alias="red_map_base_animation_2.png">resources/images/minimap/red_map_base_animation_2.png</file>
+        <file alias="red_map_base_animation_3.png">resources/images/minimap/red_map_base_animation_3.png</file>
+        <file alias="red_map_base_animation_4.png">resources/images/minimap/red_map_base_animation_4.png</file>
+        <file alias="red_map_base_area.png">resources/images/minimap/red_map_base_area.png</file>
+        <file alias="red_map_dart_launch.png">resources/images/minimap/red_map_dart_launch.png</file>
+        <file alias="red_map_guard.png">resources/images/minimap/red_map_guard.png</file>
+        <file alias="red_map_outpost.png">resources/images/minimap/red_map_outpost.png</file>
+        <file alias="red_map_outpost_bg.png">resources/images/minimap/red_map_outpost_bg.png</file>
+        <file alias="red_map_robot.png">resources/images/minimap/red_map_robot.png</file>
+        <file alias="red_map_robot_lockbg.png">resources/images/minimap/red_map_robot_lockbg.png</file>
+        <file alias="self_map_arrow.png">resources/images/minimap/self_map_arrow.png</file>
+        <file alias="self_map_robot.png">resources/images/minimap/self_map_robot.png</file>
+        <file alias="self_map_robot_lockbg.png">resources/images/minimap/self_map_robot_lockbg.png</file>
+    </qresource>
+    <qresource prefix="/images/top_outpost">
+        <file alias="blue_name.png">resources/images/top_outpost/blue_outpost_name.png</file>
+        <file alias="red_name.png">resources/images/top_outpost/red_outpost_name.png</file>
+        <file alias="blue_avatar.png">resources/images/top_outpost/blue_outpost_avatar.png</file>
+        <file alias="red_avatar.png">resources/images/top_outpost/red_outpost_avatar.png</file>
+    </qresource>
+    <qresource prefix="/images/robots">
+        <file alias="red_hero.png">resources/images/robots/red_hero.png</file>
+        <file alias="red_engineer.png">resources/images/robots/red_engineer.png</file>
+        <file alias="red_infantry.png">resources/images/robots/red_infantry.png</file>
+        <file alias="red_drone.png">resources/images/robots/red_drone.png</file>
+        <file alias="red_sentry.png">resources/images/robots/red_sentry.png</file>
+        <file alias="blue_hero.png">resources/images/robots/blue_hero.png</file>
+        <file alias="blue_engineer.png">resources/images/robots/blue_engineer.png</file>
+        <file alias="blue_infantry.png">resources/images/robots/blue_infantry.png</file>
+        <file alias="blue_drone.png">resources/images/robots/blue_drone.png</file>
+        <file alias="blue_sentry.png">resources/images/robots/blue_sentry.png</file>
+    </qresource>
+    <qresource prefix="/images/buffs">
+        <file alias="addhp_10.png">resources/images/buffs_new/addhp_10.png</file>
+        <file alias="addhp_25.png">resources/images/buffs_new/addhp_25.png</file>
+        <file alias="cool_2.png">resources/images/buffs_new/cool_2.png</file>
+        <file alias="cool_3.png">resources/images/buffs_new/cool_3.png</file>
+        <file alias="cool_5.png">resources/images/buffs_new/cool_5.png</file>
+        <file alias="cool_up.png">resources/images/buffs_new/cool_up.png</file>
+        <file alias="attack_300.png">resources/images/buffs_new/attack_300.png</file>
+        <file alias="defence_25.png">resources/images/buffs_new/defence_25.png</file>
+        <file alias="defence_50.png">resources/images/buffs_new/defence_50.png</file>
+        <file alias="defence_100.png">resources/images/buffs_new/defence_100.png</file>
+        <file alias="debuff_15.png">resources/images/buffs_new/debuff_15.png</file>
+        <file alias="debuff_20.png">resources/images/buffs_new/debuff_20.png</file>
+        <file alias="debuff_25.png">resources/images/buffs_new/debuff_25.png</file>
+        <file alias="debuff_30.png">resources/images/buffs_new/debuff_30.png</file>
+        <file alias="debuff_40.png">resources/images/buffs_new/debuff_40.png</file>
+        <file alias="debuff_100.png">resources/images/buffs_new/debuff_100.png</file>
+        <file alias="shield.png">resources/images/buffs_new/defence_100.png</file>
+        <file alias="attack_200.png">resources/images/buffs_new/rune_big_2022.png</file>
+        <file alias="attack_150.png">resources/images/buffs_new/rune_normal_15.png</file>
+        <file alias="attack_150_hero.png">resources/images/buffs_new/buff_2022_attack15.png</file>
+        <file alias="terrain_fly_green.png">resources/images/buffs_new/terrain_fly_green.png</file>
+        <file alias="terrain_highground_green.png">resources/images/buffs_new/terrain_highground_green.png</file>
+        <file alias="terrain_tunnel_ac.png">resources/images/buffs_new/terrain_tunnel_ac.png</file>
+        <file alias="terrain_tunnel_b.png">resources/images/buffs_new/terrain_tunnel_b.png</file>
+    </qresource>
+    <qresource prefix="/icons">
+        <file alias="blue_team.svg">resources/icons/blue_team.svg</file>
+        <file>resources/icons/drone.svg</file>
+        <file>resources/icons/engineer.svg</file>
+        <file>resources/icons/hero.svg</file>
+        <file>resources/icons/infantry.svg</file>
+        <file alias="red_team.svg">resources/icons/red_team.svg</file>
+        <file>resources/icons/sentry.svg</file>
+    </qresource>
+    <qresource prefix="/styles">
+        <file>resources/styles/dark_theme.qss</file>
+        <file>resources/styles/main.qss</file>
+    </qresource>
+    <qresource prefix="/images/my_robot">
+        <file alias="red_statusbar_blood_background.png">resources/images/my_robot/red_statusbar_blood_background.png</file>
+        <file alias="red_statusbar_blood_slid_low.png">resources/images/my_robot/red_statusbar_blood_slid_low.png</file>
+        <file alias="red_statusbar_blood_slid.png">resources/images/my_robot/red_statusbar_blood_slid.png</file>
+        <file alias="red_statusbar_id_border.png">resources/images/my_robot/red_statusbar_id_border.png</file>
+        <file alias="red_statusbar_avatar_infantry.png">resources/images/my_robot/red_statusbar_avatar_infantry.png</file>
+        <file alias="red_statusbar_level_1.png">resources/images/my_robot/red_statusbar_level_1.png</file>
+        <file alias="red_statusbar_level_2.png">resources/images/my_robot/red_statusbar_level_2.png</file>
+        <file alias="red_statusbar_level_3.png">resources/images/my_robot/red_statusbar_level_3.png</file>
+        <file alias="red_statusbar_level_4.png">resources/images/my_robot/red_statusbar_level_4.png</file>
+        <file alias="red_statusbar_level_5.png">resources/images/my_robot/red_statusbar_level_5.png</file>
+        <file alias="red_statusbar_level_6.png">resources/images/my_robot/red_statusbar_level_6.png</file>
+        <file alias="red_statusbar_level_7.png">resources/images/my_robot/red_statusbar_level_7.png</file>
+        <file alias="red_statusbar_level_8.png">resources/images/my_robot/red_statusbar_level_8.png</file>
+        <file alias="red_statusbar_level_9.png">resources/images/my_robot/red_statusbar_level_9.png</file>
+        <file alias="red_statusbar_level_10.png">resources/images/my_robot/red_statusbar_level_10.png</file>
+        <file alias="statusbar_expbar.png">resources/images/my_robot/statusbar_expbar.png</file>
+        <file alias="statusbar_energy.png">resources/images/my_robot/statusbar_energy.png</file>
+        <file alias="statusbar_bullet_icon.png">resources/images/my_robot/statusbar_bullet_icon.png</file>
+        <file alias="buff_2022_cool_2.png">resources/images/my_robot/buff_2022_cool_2.png</file>
+        <file alias="buff_2020_addhp_5.png">resources/images/my_robot/buff_2020_addhp_5.png</file>
+        <file alias="statusbar_signallamp_green_single.png">resources/images/my_robot/statusbar_signallamp_green_single.png</file>
+        <file alias="statusbar_signallamp_red_single.png">resources/images/my_robot/statusbar_signallamp_red_single.png</file>
+        <file alias="statusbar_energy_background.png">resources/images/my_robot/statusbar_energy_background.png</file>
+        <file alias="blue_statusbar_blood_background.png">resources/images/my_robot/blue_statusbar_blood_background.png</file>
+        <file alias="blue_statusbar_blood_slid.png">resources/images/my_robot/blue_statusbar_blood_slid.png</file>
+        <file alias="blue_statusbar_blood_slid_low.png">resources/images/my_robot/blue_statusbar_blood_slid_low.png</file>
+        <file alias="blue_statusbar_id_border.png">resources/images/my_robot/blue_statusbar_id_border.png</file>
+        <file alias="blue_statusbar_avatar_infantry.png">resources/images/my_robot/blue_statusbar_avatar_infantry.png</file>
+        <file alias="blue_statusbar_level_1.png">resources/images/my_robot/blue_statusbar_level_1.png</file>
+        <file alias="blue_statusbar_level_2.png">resources/images/my_robot/blue_statusbar_level_2.png</file>
+        <file alias="blue_statusbar_level_3.png">resources/images/my_robot/blue_statusbar_level_3.png</file>
+        <file alias="blue_statusbar_level_4.png">resources/images/my_robot/blue_statusbar_level_4.png</file>
+        <file alias="blue_statusbar_level_5.png">resources/images/my_robot/blue_statusbar_level_5.png</file>
+        <file alias="blue_statusbar_level_6.png">resources/images/my_robot/blue_statusbar_level_6.png</file>
+        <file alias="blue_statusbar_level_7.png">resources/images/my_robot/blue_statusbar_level_7.png</file>
+        <file alias="blue_statusbar_level_8.png">resources/images/my_robot/blue_statusbar_level_8.png</file>
+        <file alias="blue_statusbar_level_9.png">resources/images/my_robot/blue_statusbar_level_9.png</file>
+        <file alias="blue_statusbar_level_10.png">resources/images/my_robot/blue_statusbar_level_10.png</file>
+        <file alias="blue_hero.png">resources/images/my_robot/blue_statusbar_avatar_hero.png</file>
+        <file alias="blue_hero_invincible.png">resources/images/my_robot/blue_statusbar_avatar_hero_invincible.png</file>
+        <file alias="blue_engineer.png">resources/images/my_robot/blue_statusbar_avatar_enginner.png</file>
+        <file alias="blue_engineer_invincible.png">resources/images/my_robot/blue_statusbar_avatar_enginner_invincible.png</file>
+        <file alias="blue_infantry.png">resources/images/my_robot/blue_statusbar_avatar_infantry.png</file>
+        <file alias="blue_infantry_invincible.png">resources/images/my_robot/blue_statusbar_avatar_infantry_invincible.png</file>
+        <file alias="blue_aerial.png">resources/images/my_robot/blue_airplane_statusbar_avatar.png</file>
+        <file alias="red_hero.png">resources/images/my_robot/red_statusbar_avatar_hero.png</file>
+        <file alias="red_hero_invincible.png">resources/images/my_robot/red_statusbar_avatar_hero_invincible.png</file>
+        <file alias="red_engineer.png">resources/images/my_robot/red_statusbar_avatar_enginner.png</file>
+        <file alias="red_engineer_invincible.png">resources/images/my_robot/red_statusbar_avatar_enginner_invincible.png</file>
+        <file alias="red_infantry.png">resources/images/my_robot/red_statusbar_avatar_infantry.png</file>
+        <file alias="red_infantry_invincible.png">resources/images/my_robot/red_statusbar_avatar_infantry_invincible.png</file>
+        <file alias="red_aerial.png">resources/images/my_robot/red_airplane_statusbar_avatar.png</file>
+        <file alias="statusbar_signallamp_yellow_single.png">resources/images/my_robot/statusbar_signallamp_yellow_single.png</file>
+        <file alias="statusbar_warning_red.png">resources/images/my_robot/statusbar_warning_red.png</file>
+        <file alias="statusbar_warning_yellow.png">resources/images/my_robot/statusbar_warning_yellow.png</file>
+        <file alias="combat_icon.png">resources/images/my_robot/combat_icon.png</file>
+        <file alias="outofcombat_icon.png">resources/images/my_robot/outofcombat_icon.png</file>
+        <file alias="blood_addbuff.png">resources/images/my_robot/blood_addbuff.png</file>
+    </qresource>
+    <qresource prefix="/images/panel">
+        <file alias="17.png">resources/images/panel/17.png</file>
+        <file alias="42.png">resources/images/panel/42.png</file>
+        <file alias="setting_arrow.png">resources/images/panel/setting_arrow.png</file>
+        <file alias="blood.png">resources/images/panel/skillup_icon_blood.png</file>
+        <file alias="ic_gold_2x.png">resources/images/panel/ic_gold_2x.png</file>
+        <file alias="msg_bg.png">resources/images/panel/Tips_bg_2x.png</file>
+        <file alias="red_rune.png">resources/images/panel/map_island_red.png</file>
+        <file alias="blue_rune.png">resources/images/panel/map_island_blue.png</file>
+    </qresource>
+    <qresource prefix="/images/tab">
+        <file alias="tab_header_hurt.png">resources/images/tab/tab_header_hurt.png</file>
+        <file alias="tab_level_1.png">resources/images/tab/tab_level_1.png</file>
+        <file alias="tab_level_2.png">resources/images/tab/tab_level_2.png</file>
+        <file alias="tab_level_3.png">resources/images/tab/tab_level_3.png</file>
+        <file alias="tab_level_4.png">resources/images/tab/tab_level_4.png</file>
+        <file alias="tab_level_5.png">resources/images/tab/tab_level_5.png</file>
+        <file alias="tab_level_6.png">resources/images/tab/tab_level_6.png</file>
+        <file alias="tab_level_7.png">resources/images/tab/tab_level_7.png</file>
+        <file alias="tab_level_8.png">resources/images/tab/tab_level_8.png</file>
+        <file alias="tab_level_9.png">resources/images/tab/tab_level_9.png</file>
+        <file alias="tab_level_10.png">resources/images/tab/tab_level_10.png</file>
+        <file alias="message_disconnect.png">resources/images/tab/message_disconnect.png</file>
+    </qresource>
+    <qresource prefix="/images/top_robots">
+        <file alias="blue_tab_bar.png">resources/images/top_robots/blue_tab_bar.png</file>
+        <file alias="red_tab_bar.png">resources/images/top_robots/red_tab_bar.png</file>
+        <file alias="blue_teammate_bg.png">resources/images/top_robots/blue_teammate_bg.png</file>
+        <file alias="red_teammate_bg.png">resources/images/top_robots/red_teammate_bg.png</file>
+        <file alias="red_guard_avatar.png">resources/images/top_robots/red_guard_avatar.png</file>
+        <file alias="red_teammate_avatar_airplane.png">resources/images/top_robots/red_teammate_avatar_airplane.png</file>
+        <file alias="red_teammate_avatar_soldier.png">resources/images/top_robots/red_teammate_avatar_soldier.png</file>
+        <file alias="red_teammate_avatar_engineer.png">resources/images/top_robots/red_teammate_avatar_engineer.png</file>
+        <file alias="red_teammate_avatar_hero.png">resources/images/top_robots/red_teammate_avatar_hero.png</file>
+        <file alias="blue_teammate_avatar_hero.png">resources/images/top_robots/blue_teammate_avatar_hero.png</file>
+        <file alias="blue_teammate_avatar_engineer.png">resources/images/top_robots/blue_teammate_avatar_engineer.png</file>
+        <file alias="blue_teammate_avatar_soldier.png">resources/images/top_robots/blue_teammate_avatar_soldier.png</file>
+        <file alias="blue_teammate_avatar_airplane.png">resources/images/top_robots/blue_teammate_avatar_airplane.png</file>
+        <file alias="blue_guard_avatar.png">resources/images/top_robots/blue_guard_avatar.png</file>
+        <file alias="levels/tab_level_1.png">resources/images/top_robots/levels/tab_level_1.png</file>
+        <file alias="levels/tab_level_2.png">resources/images/top_robots/levels/tab_level_2.png</file>
+        <file alias="levels/tab_level_3.png">resources/images/top_robots/levels/tab_level_3.png</file>
+        <file alias="levels/tab_level_4.png">resources/images/top_robots/levels/tab_level_4.png</file>
+        <file alias="levels/tab_level_5.png">resources/images/top_robots/levels/tab_level_5.png</file>
+        <file alias="levels/tab_level_6.png">resources/images/top_robots/levels/tab_level_6.png</file>
+        <file alias="levels/tab_level_7.png">resources/images/top_robots/levels/tab_level_7.png</file>
+        <file alias="levels/tab_level_8.png">resources/images/top_robots/levels/tab_level_8.png</file>
+        <file alias="levels/tab_level_9.png">resources/images/top_robots/levels/tab_level_9.png</file>
+        <file alias="levels/tab_level_10.png">resources/images/top_robots/levels/tab_level_10.png</file>
+    </qresource>
+    <qresource prefix="/images/gamephase">
+        <file alias="freeze_1.png">resources/images/gamephase/freeze_1.png</file>
+        <file alias="freeze_2.png">resources/images/gamephase/freeze_2.png</file>
+        <file alias="freeze_3.png">resources/images/gamephase/freeze_3.png</file>
+        <file alias="freeze_4.png">resources/images/gamephase/freeze_4.png</file>
+        <file alias="freeze_5.png">resources/images/gamephase/freeze_5.png</file>
+        <file alias="freeze_start.png">resources/images/gamephase/freeze_start.png</file>
+        <file alias="gamestatus_cyan.png">resources/images/gamephase/gamestatus_cyan.png</file>
+        <file alias="gamestatus_red.png">resources/images/gamephase/gamestatus_red.png</file>
+        <file alias="gamestatus_yellow.png">resources/images/gamephase/gamestatus_yellow.png</file>
+        <file alias="MaskTips-Ad-320.png">resources/images/gamephase/MaskTips-Ad-320.png</file>
+        <file alias="MaskTips-Ad-Yellow-320.png">resources/images/gamephase/MaskTips-Ad-Yellow-320.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <!-- <file>resources/images/message/blue_message_outpost.png</file>
+        <file>resources/images/message/blue_message_outpost_dead.png</file>
+        <file>resources/images/message/blue_validate_outpost.png</file>
+        <file>resources/images/message/blue_wingman_outpost.png</file>
+        <file>resources/images/message/blue_wingman_outpost_alive.png</file>
+        <file>resources/images/message/blue_wingman_outpost_dead.png</file>
+        <file>resources/images/message/controlzone_blue_icon.png</file>
+        <file>resources/images/message/controlzone_red_icon.png</file> -->
+        <file>resources/images/message/message_blue.png</file>
+        <!-- <file>resources/images/message/message_green.png</file>
+        <file>resources/images/message/message_kill.png</file> -->
+        <file>resources/images/message/message_red.png</file>
+        <!-- <file>resources/images/message/red_message_outpost.png</file>
+        <file>resources/images/message/red_message_outpost_dead.png</file>
+        <file>resources/images/message/red_wingman_outpost.png</file>
+        <file>resources/images/message/red_wingman_outpost_alive.png</file>
+        <file>resources/images/message/red_wingman_outpost_dead.png</file> -->
+        <file>resources/images/message/validate_icon_hp.png</file>
+        <file>resources/images/message/validate_icon_killcount.png</file>
+        <file>resources/images/message/validate_icon_rune.png</file>
+        <file>resources/images/message/validate_icon_totalhurt.png</file>
+        <file>resources/images/message/warning_box.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,153 @@
+name: Quality
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository-checks:
+    name: 仓库与工具检查
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v7
+
+      - name: 准备 Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: sim/requirements.txt
+
+      - name: 准备 Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+
+      - name: 安装系统检查工具
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ffmpeg \
+            protobuf-compiler
+
+      - name: 安装模拟器协议运行时
+        run: python -m pip install 'protobuf>=6.33.2,<7'
+
+      - name: 运行发布预检工具单元测试
+        run: python -m unittest discover -s tools/release/tests -p 'test_*.py' -v
+
+      - name: 检查源码发行技术契约
+        run: |
+          python tools/release/check_packaging_readiness.py
+          python tools/release/check_runtime_resources.py
+          python tools/release/check_version_contract.py
+
+      - name: 检查公开示例配置
+        run: python tools/release/check_example_config.py
+
+      - name: 检查公开媒体元数据
+        run: python tools/release/check_media_metadata.py
+
+      - name: 检查模拟器 Protobuf 兼容性
+        run: python tools/release/check_sim_protobuf_runtime.py
+
+      - name: 运行模拟器独立测试
+        run: |
+          python -m unittest discover -s sim/tests -t sim -p 'test_*.py' -v
+          node --test sim/tests/test_map_geometry.js
+
+      - name: 检查文档引用
+        run: python tools/release/check_docs.py
+
+      - name: 检查公开发布快照
+        run: python tools/release/check_public_readiness.py
+
+  native-build:
+    name: Ubuntu 原生构建
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      QT_QPA_PLATFORM: offscreen
+      QT_QUICK_BACKEND: software
+      LIBGL_ALWAYS_SOFTWARE: "1"
+      RM_DISABLE_AUDIO: "1"
+      RM_DEVTOOLS: "0"
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v7
+
+      - name: 安装构建依赖
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            build-essential \
+            ccache \
+            cmake \
+            fontconfig \
+            fonts-noto-cjk \
+            libabsl-dev \
+            libasound2t64 \
+            libavcodec-dev \
+            libavformat-dev \
+            libavutil-dev \
+            libpaho-mqtt-dev \
+            libprotobuf-dev \
+            libswscale-dev \
+            ninja-build \
+            pkg-config \
+            protobuf-compiler \
+            qml6-module-qtqml \
+            qml6-module-qtqml-models \
+            qml6-module-qtqml-workerscript \
+            qml6-module-qtquick \
+            qml6-module-qtquick-controls \
+            qml6-module-qtquick-layouts \
+            qml6-module-qtquick-templates \
+            qml6-module-qtquick-window \
+            qt6-base-dev \
+            qt6-declarative-dev \
+            qt6-declarative-dev-tools \
+            qt6-multimedia-dev \
+            qt6-serialport-dev \
+            qt6-svg-dev
+
+      - name: 恢复编译缓存
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ccache
+          key: rm26-ccache-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+          restore-keys: |
+            rm26-ccache-${{ runner.os }}-${{ runner.arch }}-
+
+      - name: 准备编译缓存
+        run: |
+          ccache --max-size=1G
+          ccache --zero-stats
+
+      - name: 配置
+        run: cmake --preset ci
+
+      - name: 检查 QML lint 基线
+        run: python3 tools/release/check_qml_lint.py
+
+      - name: 编译客户端与测试目标
+        run: cmake --build --preset ci
+
+      - name: 运行 C++ / Qt 测试
+        run: ctest --preset ci --no-tests=error --timeout 120
+
+      - name: 输出编译缓存统计
+        if: always()
+        run: ccache --show-stats

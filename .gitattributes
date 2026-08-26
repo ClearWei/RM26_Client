@@ -1,0 +1,22 @@
+# Git LFS 配置
+# 视频文件
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+# 发布稿中的短视频直接进入源码归档，避免 Git LFS 指针导致文档断链。
+docs/communications/assets/2026-rm26-custom-client/videos/*.mp4 -filter -diff -merge -text
+*.avi filter=lfs diff=lfs merge=lfs -text
+
+*.mkv filter=lfs diff=lfs merge=lfs -text
+
+# 图片文件（如果很大）
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.ai filter=lfs diff=lfs merge=lfs -text
+
+# 压缩包和模型文件
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.onnx filter=lfs diff=lfs merge=lfs -text
+*.pth filter=lfs diff=lfs merge=lfs -text
+*.weights filter=lfs diff=lfs merge=lfs -text
+
+# 运行配置可能包含现场参数，即使误加入索引也不得进入源码归档。
+/config.json export-ignore

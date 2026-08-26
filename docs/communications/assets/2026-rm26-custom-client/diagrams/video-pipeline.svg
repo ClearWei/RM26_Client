@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="820" viewBox="0 0 1600 820" role="img" aria-labelledby="title desc">
+  <title id="title">主图传与辅助相机的视频处理链路</title>
+  <desc id="desc">主 HEVC 图传和辅助 H.264 相机使用不同的接入与解码链路，由界面状态机决定前台呈现。</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #667085; }
+      .lane-title { font-size: 24px; font-weight: 700; }
+      .box-title { font-size: 20px; font-weight: 650; }
+      .box-sub { font-size: 15px; fill: #667085; }
+      .note { font-size: 17px; fill: #475467; }
+      .lane { fill: #f8fafc; stroke: #d0d5dd; stroke-width: 2; }
+      .main { fill: #eff8ff; stroke: #1570ef; stroke-width: 2.2; rx: 10; }
+      .aux { fill: #f4f3ff; stroke: #6938ef; stroke-width: 2.2; rx: 10; }
+      .state { fill: #fff7ed; stroke: #f79009; stroke-width: 2.2; rx: 10; }
+      .arrow { fill: none; stroke: #344054; stroke-width: 3; marker-end: url(#arrow); }
+      .control { fill: none; stroke: #667085; stroke-width: 3; stroke-dasharray: 10 8; marker-end: url(#arrow-muted); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#344054"/>
+    </marker>
+    <marker id="arrow-muted" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#667085"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="820" fill="#ffffff"/>
+  <text x="54" y="58" class="title">两路视频为什么分开处理</text>
+  <text x="54" y="88" class="subtitle">接收和解码持续运行，页面切换只决定哪一路进入前台</text>
+
+  <rect x="38" y="120" width="1524" height="245" class="lane"/>
+  <text x="68" y="160" class="lane-title">主图传 · UDP / HEVC</text>
+  <rect x="70" y="205" width="240" height="105" class="main"/>
+  <text x="190" y="245" text-anchor="middle" class="box-title">UDP 分片</text>
+  <text x="190" y="276" text-anchor="middle" class="box-sub">FrameID / SliceID</text>
+  <rect x="360" y="190" width="250" height="135" class="main"/>
+  <text x="485" y="232" text-anchor="middle" class="box-title">VideoReceiver</text>
+  <text x="485" y="263" text-anchor="middle" class="box-sub">批量收包与帧重组</text>
+  <text x="485" y="290" text-anchor="middle" class="box-sub">完整帧或超时清理</text>
+  <rect x="660" y="205" width="235" height="105" class="main"/>
+  <text x="777" y="245" text-anchor="middle" class="box-title">HevcDecoder</text>
+  <text x="777" y="276" text-anchor="middle" class="box-sub">FFmpeg 低时延解码</text>
+  <rect x="945" y="205" width="235" height="105" class="main"/>
+  <text x="1062" y="245" text-anchor="middle" class="box-title">最新帧缓存</text>
+  <text x="1062" y="276" text-anchor="middle" class="box-sub">新帧替换待绘旧帧</text>
+  <rect x="1230" y="205" width="245" height="105" class="main"/>
+  <text x="1352" y="245" text-anchor="middle" class="box-title">Qt 画面绘制</text>
+  <text x="1352" y="276" text-anchor="middle" class="box-sub">主图传 Widgets</text>
+  <path d="M310 257 H360" class="arrow"/>
+  <path d="M610 257 H660" class="arrow"/>
+  <path d="M895 257 H945" class="arrow"/>
+  <path d="M1180 257 H1230" class="arrow"/>
+
+  <rect x="38" y="405" width="1524" height="245" class="lane"/>
+  <text x="68" y="445" class="lane-title">辅助相机 · CustomByteBlock / H.264</text>
+  <rect x="70" y="490" width="240" height="105" class="aux"/>
+  <text x="190" y="530" text-anchor="middle" class="box-title">H.264 分片</text>
+  <text x="190" y="561" text-anchor="middle" class="box-sub">机器人自定义数据</text>
+  <rect x="360" y="490" width="250" height="105" class="aux"/>
+  <text x="485" y="530" text-anchor="middle" class="box-title">NetworkManager</text>
+  <text x="485" y="561" text-anchor="middle" class="box-sub">消息分类与路由</text>
+  <rect x="660" y="475" width="235" height="135" class="aux"/>
+  <text x="777" y="517" text-anchor="middle" class="box-title">VideoReceiver</text>
+  <text x="777" y="548" text-anchor="middle" class="box-sub">feedH264Frame</text>
+  <text x="777" y="575" text-anchor="middle" class="box-sub">码流恢复</text>
+  <rect x="945" y="490" width="235" height="105" class="aux"/>
+  <text x="1062" y="530" text-anchor="middle" class="box-title">H264Decoder</text>
+  <text x="1062" y="561" text-anchor="middle" class="box-sub">解析与解码</text>
+  <rect x="1230" y="475" width="245" height="135" class="aux"/>
+  <text x="1352" y="517" text-anchor="middle" class="box-title">GameData / 界面</text>
+  <text x="1352" y="548" text-anchor="middle" class="box-sub">辅助画面信号</text>
+  <text x="1352" y="575" text-anchor="middle" class="box-sub">预览或部署英雄全屏</text>
+  <path d="M310 542 H360" class="arrow"/>
+  <path d="M610 542 H660" class="arrow"/>
+  <path d="M895 542 H945" class="arrow"/>
+  <path d="M1180 542 H1230" class="arrow"/>
+
+  <rect x="610" y="690" width="380" height="72" class="state"/>
+  <text x="800" y="720" text-anchor="middle" class="box-title">MainWindow 界面状态机</text>
+  <text x="800" y="747" text-anchor="middle" class="box-sub">根据模式与赛事事件选择前台画面</text>
+  <path d="M710 690 C620 640, 1240 650, 1352 610" class="control"/>
+  <path d="M890 690 C1020 640, 1250 375, 1352 310" class="control"/>
+  <text x="54" y="798" class="note">测量边界说明：图中只描述客户端进程内处理，不代表相机采集到屏幕显示的端到端时延。</text>
+</svg>

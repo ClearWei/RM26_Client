@@ -1,0 +1,53 @@
+name: Public Readiness
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: 公开发布预检
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: 检出代码
+        uses: actions/checkout@v7
+
+      - name: 准备 Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.11"
+
+      - name: 安装媒体检查工具
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends ffmpeg
+
+      - name: 检查公开媒体元数据
+        run: python tools/release/check_media_metadata.py
+
+      - name: 检查打包发布契约
+        if: always()
+        run: python tools/release/check_packaging_readiness.py
+
+      - name: 检查运行时资源交付
+        if: always()
+        run: python tools/release/check_runtime_resources.py
+
+      - name: 检查版本与可执行名称契约
+        if: always()
+        run: python tools/release/check_version_contract.py
+
+      - name: 检查公开树
+        if: always()
+        run: python tools/release/check_public_readiness.py
+
+      - name: 检查公开示例配置
+        if: always()
+        run: python tools/release/check_example_config.py
+
+      - name: 检查文档引用
+        if: always()
+        run: python tools/release/check_docs.py

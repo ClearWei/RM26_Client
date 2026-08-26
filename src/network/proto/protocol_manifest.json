@@ -1,0 +1,18 @@
+{
+  "manifest_version": 1,
+  "protocol": {
+    "name": "RoboMaster 2026 机甲大师高校系列赛通信协议",
+    "version": "2.0.0",
+    "published_on": "2026-06-26",
+    "redistribution": "external-reference-only"
+  },
+  "canonical_schema": "src/network/proto/robomaster.proto",
+  "alignment_status": "in-progress",
+  "verified_sections": [
+    "2.2.3",
+    "2.2.14",
+    "2.2.21",
+    "2.2.30"
+  ],
+  "known_gaps_document": "docs/maintainers/protocol-convergence-plan.md"
+}

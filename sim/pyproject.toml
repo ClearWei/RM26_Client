@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sim"
+version = "0.1.0"
+description = "RoboMaster 2026 simulation server"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi",
+    "uvicorn",
+    "python-socketio",
+    "python-multipart",
+    "opencv-python",
+    "numpy",
+    "paho-mqtt",
+    "protobuf>=6.33.2,<7",
+]
+
+[tool.setuptools.packages.find]
+include = ["server", "server.*", "sim"]

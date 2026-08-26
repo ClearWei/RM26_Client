@@ -1,0 +1,46 @@
+services:
+  rm26-client:
+    image: rm26_qtclient-rm26-client:latest
+    build:
+      context: .
+      dockerfile: docker/client.Dockerfile
+      args:
+        RM26_CLIENT_BASE_IMAGE: ${RM26_CLIENT_BASE_IMAGE:-ubuntu:24.04}
+    container_name: rm26-client-field
+    network_mode: host
+    environment:
+      DISPLAY: ${DISPLAY}
+      PULSE_SERVER: ${RM_PULSE_SERVER:-tcp:127.0.0.1:47130}
+      PULSE_COOKIE: ${RM_PULSE_COOKIE_CONTAINER:-/tmp/rm26-pulse-cookie}
+      QT_QPA_PLATFORM: ${QT_QPA_PLATFORM:-xcb}
+      QT_X11_NO_MITSHM: "1"
+      QT_SCALE_FACTOR: ${QT_SCALE_FACTOR:-1}
+      QT_AUTO_SCREEN_SCALE_FACTOR: ${QT_AUTO_SCREEN_SCALE_FACTOR:-0}
+      QT_ENABLE_HIGHDPI_SCALING: ${QT_ENABLE_HIGHDPI_SCALING:-0}
+      QT_FONT_DPI: ${QT_FONT_DPI:-96}
+      XDG_RUNTIME_DIR: /tmp/runtime-root
+      RM_QT_QUICK_BACKEND: ${RM_QT_QUICK_BACKEND:-software}
+      RM_DISABLE_AUDIO: ${RM_DISABLE_AUDIO:-0}
+      RM_SERVER_IP: "${RM_SERVER_IP:?请显式设置 RM_SERVER_IP}"
+      RM_SERVER_PORT: ${RM_SERVER_PORT:-3333}
+      RM_CLIENT_PORT: ${RM_CLIENT_PORT:-3333}
+      RM_VIDEO_PORT: ${RM_VIDEO_PORT:-3334}
+      RM_MQTT_BROKER: "${RM_MQTT_BROKER:?请显式设置 RM_MQTT_BROKER}"
+      RM_MQTT_PORT: ${RM_MQTT_PORT:-3333}
+      RM_CLIENT_ROBOT_ID: "${RM_CLIENT_ROBOT_ID:?请显式设置 RM_CLIENT_ROBOT_ID}"
+      RM_ENEMY_TEAM_NAME: ${RM_ENEMY_TEAM_NAME:-示例对手}
+      RM_VIDEO_STREAM_URL: ${RM_VIDEO_STREAM_URL:-udp://0.0.0.0:3334}
+      RM_VIDEO_UDP_RCVBUF_BYTES: ${RM_VIDEO_UDP_RCVBUF_BYTES:-16777216}
+      RM_VIDEO_RESET_ON_LOSS_THRESHOLD: ${RM_VIDEO_RESET_ON_LOSS_THRESHOLD:-1}
+      RM_RUNTIME_LOG_PATH: ${RM_RUNTIME_LOG_PATH:-/opt/rmclient/tmp/log/runtime.log}
+      RM_RUNTIME_LOG_STDERR: ${RM_RUNTIME_LOG_STDERR:-0}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ${RM_PULSE_COOKIE_HOST:-${HOME}/.config/pulse/cookie}:${RM_PULSE_COOKIE_CONTAINER:-/tmp/rm26-pulse-cookie}:ro
+      - ./config.json:/opt/rmclient/config.json:ro
+      - ./resources/videos:/opt/rmclient/resources/videos:ro
+      - ./resources/sounds:/opt/rmclient/build/resources/sounds:ro
+      - ./tmp/log:/opt/rmclient/tmp/log
+      - ./log:/opt/rmclient/log
+    stdin_open: true
+    tty: true

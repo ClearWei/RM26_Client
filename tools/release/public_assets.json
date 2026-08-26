@@ -1,0 +1,98 @@
+{
+  "schema_version": 2,
+  "snapshot_algorithm": "sha256:path-nul-blob-oid-lf:v1",
+  "snapshot_note": "每组对 Git 索引 stage 0 文件按路径 UTF-8 字节升序；每项依次写入 path、NUL、blob OID ASCII、LF 后计算 SHA-256。",
+  "note": "status 只能在权属和再分发范围确认后改为 approved，并填写可复核的 evidence；素材变更后必须重新复核快照。",
+  "groups": [
+    {
+      "path": "resources/app_icon.png",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 1,
+        "sha256": "f6d9d326662f2806c455c22d0ed241219ee6e418926ea766748139f5f4d72cb7"
+      }
+    },
+    {
+      "path": "resources/crosshair",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 23,
+        "sha256": "d3db311bf5216f65b89bc257a5014183d6ef325bf905a7e8b0ed99f992bea442"
+      }
+    },
+    {
+      "path": "resources/icons",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 7,
+        "sha256": "a49a2f0b2d7e01169324d6a6983fb0fd30a84ad68a254a406c05eb9b0ff9c896"
+      }
+    },
+    {
+      "path": "resources/images",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 648,
+        "sha256": "efadba0f6556a824afb8133f25cc9f3353a740d78fe5dc5470f5fc78bf053a7c"
+      }
+    },
+    {
+      "path": "resources/sounds",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 31,
+        "sha256": "a136d3ea59303c132b84717c4d275628af69651b83a19895872d9aa7087b64de"
+      }
+    },
+    {
+      "path": "resources/sundry_icon.png",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 1,
+        "sha256": "99a2fa45bc184b255f919280b5b3d058dcc24ec94a9d04a67605761d58fec718"
+      }
+    },
+    {
+      "path": "sim/server/static/minimap_bg.png",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 1,
+        "sha256": "eb5f13d8e8060639ace9887ad71798a5855f52a5204bcd2cd01c4470f0e53cb9"
+      }
+    },
+    {
+      "path": "docs/communications/assets/2026-rm26-custom-client/diagrams",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 3,
+        "sha256": "8d87bc11178db0e7679c2024f44591ef3341fcd9cf65ad04a93b36255efc2267"
+      }
+    },
+    {
+      "path": "docs/communications/assets/2026-rm26-custom-client/screenshots",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 5,
+        "sha256": "8a03527aa364c9e7d109c301037e7f818e5dcc2cb14a554863d27d098a270cc7"
+      }
+    },
+    {
+      "path": "docs/communications/assets/2026-rm26-custom-client/videos",
+      "status": "approved",
+      "evidence": "ASSET_LICENSES.md",
+      "snapshot": {
+        "file_count": 3,
+        "sha256": "dbd56a32220d7e70e7fa422afe628acaf94dc5113626c90e9bff87ea255690c0"
+      }
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- 项目自制的防御标记，外轮廓与勾线分别表达防护和确认。 -->
+  <path d="M32 7L53 15V29C53 42 44 53 32 58C20 53 11 42 11 29V15L32 7Z" fill="#15D7C7" fill-opacity="0.2" stroke="#15D7C7" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M22 32L29 39L43 24" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

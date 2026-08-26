@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 渐变定义 -->
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" style="stop-color:#1a2332;stop-opacity:0.8"/>
+      <stop offset="50%" style="stop-color:#0f1419;stop-opacity:0.9"/>
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:1"/>
+    </radialGradient>
+
+    <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#6496FF;stop-opacity:0.3"/>
+      <stop offset="50%" style="stop-color:#4080FF;stop-opacity:0.2"/>
+      <stop offset="100%" style="stop-color:#2060FF;stop-opacity:0.1"/>
+    </linearGradient>
+
+    <!-- 网格图案 -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#6496FF" stroke-width="0.5" opacity="0.3"/>
+    </pattern>
+
+    <!-- 六边形图案 -->
+    <pattern id="hexPattern" width="60" height="52" patternUnits="userSpaceOnUse">
+      <polygon points="30,4 45,15 45,37 30,48 15,37 15,15"
+               fill="none" stroke="#6496FF" stroke-width="1" opacity="0.2"/>
+    </pattern>
+  </defs>
+
+  <!-- 主背景 -->
+  <rect width="1920" height="1080" fill="url(#centerGlow)"/>
+
+  <!-- 网格层 -->
+  <rect width="1920" height="1080" fill="url(#grid)"/>
+
+  <!-- 六边形图案层 -->
+  <rect width="1920" height="1080" fill="url(#hexPattern)"/>
+
+  <!-- 科技感装饰线条 -->
+  <g stroke="#6496FF" stroke-width="2" fill="none" opacity="0.4">
+    <!-- 左上角装饰 -->
+    <path d="M 50 50 L 200 50 L 200 100 M 50 50 L 50 200"/>
+    <path d="M 80 80 L 170 80 L 170 130"/>
+
+    <!-- 右上角装饰 -->
+    <path d="M 1870 50 L 1720 50 L 1720 100 M 1870 50 L 1870 200"/>
+    <path d="M 1840 80 L 1750 80 L 1750 130"/>
+
+    <!-- 左下角装饰 -->
+    <path d="M 50 1030 L 200 1030 L 200 980 M 50 1030 L 50 880"/>
+    <path d="M 80 1000 L 170 1000 L 170 950"/>
+
+    <!-- 右下角装饰 -->
+    <path d="M 1870 1030 L 1720 1030 L 1720 980 M 1870 1030 L 1870 880"/>
+    <path d="M 1840 1000 L 1750 1000 L 1750 950"/>
+  </g>
+
+  <!-- 中央区域装饰 -->
+  <g stroke="#6496FF" stroke-width="1" fill="none" opacity="0.3">
+    <!-- 中央十字线 -->
+    <line x1="960" y1="400" x2="960" y2="680"/>
+    <line x1="800" y1="540" x2="1120" y2="540"/>
+
+    <!-- 中央圆环 -->
+    <circle cx="960" cy="540" r="80" stroke-width="2" opacity="0.5"/>
+    <circle cx="960" cy="540" r="120" stroke-width="1" opacity="0.3"/>
+    <circle cx="960" cy="540" r="160" stroke-width="1" opacity="0.2"/>
+  </g>
+
+  <!-- 能量点位置标记 -->
+  <g fill="#FFB464" opacity="0.6">
+    <circle cx="480" cy="270" r="8"/>
+    <circle cx="1440" cy="270" r="8"/>
+    <circle cx="480" cy="810" r="8"/>
+    <circle cx="1440" cy="810" r="8"/>
+  </g>
+
+  <!-- 基地区域标记 -->
+  <g stroke="#FF6464" stroke-width="3" fill="none" opacity="0.5">
+    <!-- 红方基地 -->
+    <rect x="50" y="50" width="200" height="150" rx="10"/>
+    <!-- 蓝方基地 -->
+    <rect x="1670" y="880" width="200" height="150" rx="10"/>
+  </g>
+
+  <!-- 光效装饰 -->
+  <g opacity="0.4">
+    <!-- 左侧光束 -->
+    <path d="M 0 200 Q 300 400 0 600" stroke="url(#techGradient)" stroke-width="3" fill="none"/>
+    <!-- 右侧光束 -->
+    <path d="M 1920 200 Q 1620 400 1920 600" stroke="url(#techGradient)" stroke-width="3" fill="none"/>
+    <!-- 顶部光束 -->
+    <path d="M 400 0 Q 600 200 800 0" stroke="url(#techGradient)" stroke-width="2" fill="none"/>
+    <path d="M 1120 0 Q 1320 200 1520 0" stroke="url(#techGradient)" stroke-width="2" fill="none"/>
+    <!-- 底部光束 -->
+    <path d="M 400 1080 Q 600 880 800 1080" stroke="url(#techGradient)" stroke-width="2" fill="none"/>
+    <path d="M 1120 1080 Q 1320 880 1520 1080" stroke="url(#techGradient)" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- 数据流效果 -->
+  <g stroke="#64FF64" stroke-width="1" fill="none" opacity="0.3">
+    <path d="M 100 300 Q 200 350 300 300 Q 400 250 500 300">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="3s" repeatCount="indefinite"/>
+    </path>
+    <path d="M 1420 780 Q 1520 730 1620 780 Q 1720 830 1820 780">
+      <animate attributeName="stroke-dasharray" values="0,20;20,0;0,20" dur="3s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <!-- 粒子效果 -->
+  <g fill="#6496FF" opacity="0.6">
+    <circle cx="300" cy="200" r="2">
+      <animate attributeName="opacity" values="0.6;0.2;0.6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1620" cy="880" r="2">
+      <animate attributeName="opacity" values="0.2;0.6;0.2" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="960" cy="300" r="1.5">
+      <animate attributeName="opacity" values="0.4;0.8;0.4" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="960" cy="780" r="1.5">
+      <animate attributeName="opacity" values="0.8;0.4;0.8" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

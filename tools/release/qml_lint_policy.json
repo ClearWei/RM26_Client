@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "qml_root": "src/qml",
+  "allowed_diagnostics": {
+    "unqualified": {
+      "type": "warning",
+      "max_count": 0
+    }
+  }
+}

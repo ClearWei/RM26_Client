@@ -1,0 +1,6 @@
+module TabPanel
+
+TabStatsPanel 1.0 TabStatsPanel.qml
+RobotStatsTable 1.0 RobotStatsTable.qml
+RobotStatsRow 1.0 RobotStatsRow.qml
+ActionButton 1.0 ActionButton.qml

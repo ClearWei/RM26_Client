@@ -1,0 +1,10 @@
+# 为仍使用 requirements.txt 的环境保留兼容入口。
+# 依赖版本必须与 pyproject.toml 同步。
+fastapi
+uvicorn
+python-socketio
+python-multipart
+opencv-python
+numpy
+paho-mqtt
+protobuf>=6.33.2,<7

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 安全漏洞报告
+    url: https://github.com/ClearWei/RM26_Client/security/advisories/new
+    about: 涉及漏洞、真实现场信息或敏感日志时，请使用私密报告入口。

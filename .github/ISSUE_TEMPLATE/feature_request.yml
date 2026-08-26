@@ -1,0 +1,97 @@
+name: 功能建议
+description: 提议一个有明确场景、边界和验收方式的改进
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢提出建议。本项目并非 DJI 或 RoboMaster 官方项目，路线图也不代表官方承诺。
+        项目代码采用 MIT License；素材按 ASSET_LICENSES.md 标注。请不要附带来源不明的官方资源、图片、音效或代码。
+
+  - type: checkboxes
+    id: precheck
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜索现有 issue 和路线图，没有发现相同建议。
+          required: true
+        - label: 我描述的是用户问题和期望结果，而不只是指定一种实现。
+          required: true
+        - label: 建议不依赖未经授权的现场访问或权属不明素材。
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: 使用场景与问题
+      description: 谁在什么情况下遇到了什么问题？现有方式为什么不够？
+    validations:
+      required: true
+
+  - type: textarea
+    id: value
+    attributes:
+      label: 预期价值
+      description: 说明对操作手、开发者、测试人员或学习者的具体帮助。
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议方案
+      description: 描述期望行为、主要交互或接口，不必先写完整实现。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 主要范围
+      options:
+        - 客户端界面或交互
+        - 核心状态或业务逻辑
+        - MQTT、UDP 或协议处理
+        - 视频接收或解码
+        - 模拟器或 Web 控制台
+        - 构建、测试或发布
+        - 文档或学习材料
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: compatibility
+    attributes:
+      label: 兼容性与边界
+      description: 说明是否涉及协议语义、现有配置、快捷键、界面行为、平台差异或模拟器。若不了解可写“待评估”。
+    validations:
+      required: true
+
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收方式
+      description: 列出可以观察或测试的完成条件。
+      placeholder: |
+        - [ ] 条件一
+        - [ ] 条件二
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: 替代方案
+      description: 说明尝试过的现有功能、临时办法或其他设计选择。
+
+  - type: dropdown
+    id: contribution
+    attributes:
+      label: 是否愿意参与实现
+      options:
+        - 可以提交设计或代码
+        - 可以协助测试和验收
+        - 暂时只能提供需求信息
+    validations:
+      required: true

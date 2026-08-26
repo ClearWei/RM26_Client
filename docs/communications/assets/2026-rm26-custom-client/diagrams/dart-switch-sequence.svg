@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1040" viewBox="0 0 1600 1040" role="img" aria-labelledby="title desc">
+  <title id="title">飞镖命中后的视图切换时序</title>
+  <desc id="desc">GameStatus 独立维护比赛阶段倒计时；赛事 Event 进入状态模型后立即触发结构化信号，界面状态机再按敌我关系、当前页面和本地规则决定主图传或辅助相机的前台展示。</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #172033; }
+      .title { font-size: 34px; font-weight: 700; }
+      .subtitle { font-size: 18px; fill: #667085; }
+      .actor-title { font-size: 21px; font-weight: 650; }
+      .actor-sub { font-size: 15px; fill: #667085; }
+      .label { font-size: 17px; fill: #344054; }
+      .small { font-size: 15px; fill: #667085; }
+      .actor { fill: #ffffff; stroke: #344054; stroke-width: 2.2; rx: 10; }
+      .life { stroke: #98a2b3; stroke-width: 2; stroke-dasharray: 9 8; }
+      .region { fill: #f8fafc; stroke: #98a2b3; stroke-width: 2; rx: 10; }
+      .event { fill: none; stroke: #344054; stroke-width: 3; marker-end: url(#arrow); }
+      .control { fill: none; stroke: #667085; stroke-width: 3; stroke-dasharray: 10 8; marker-end: url(#arrow-muted); }
+    </style>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#344054"/>
+    </marker>
+    <marker id="arrow-muted" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#667085"/>
+    </marker>
+  </defs>
+
+  <rect width="1600" height="1040" fill="#ffffff"/>
+  <text x="54" y="55" class="title">飞镖命中后的视图切换时序</text>
+  <text x="54" y="84" class="subtitle">事件与比赛阶段倒计时来自两条协议消息，观察时长由客户端本地规则计算</text>
+
+  <rect x="70" y="115" width="280" height="92" class="actor"/>
+  <text x="210" y="153" text-anchor="middle" class="actor-title">赛事消息源</text>
+  <text x="210" y="180" text-anchor="middle" class="actor-sub">Event / GameStatus</text>
+  <rect x="450" y="115" width="300" height="92" class="actor"/>
+  <text x="600" y="153" text-anchor="middle" class="actor-title">NetworkManager / GameData</text>
+  <text x="600" y="180" text-anchor="middle" class="actor-sub">接收、解析与结构化信号</text>
+  <rect x="850" y="115" width="300" height="92" class="actor"/>
+  <text x="1000" y="153" text-anchor="middle" class="actor-title">MainWindow 状态机</text>
+  <text x="1000" y="180" text-anchor="middle" class="actor-sub">观察窗口与页面切换</text>
+  <rect x="1250" y="115" width="280" height="92" class="actor"/>
+  <text x="1390" y="153" text-anchor="middle" class="actor-title">两路视频链路</text>
+  <text x="1390" y="180" text-anchor="middle" class="actor-sub">主 HEVC / 辅助 H.264</text>
+
+  <line x1="210" y1="207" x2="210" y2="990" class="life"/>
+  <line x1="600" y1="207" x2="600" y2="990" class="life"/>
+  <line x1="1000" y1="207" x2="1000" y2="990" class="life"/>
+  <line x1="1390" y1="207" x2="1390" y2="990" class="life"/>
+
+  <path d="M210 270 H600" class="event"/>
+  <text x="405" y="258" text-anchor="middle" class="label">GameStatus(stage_countdown_sec，独立持续更新)</text>
+  <path d="M210 330 H600" class="event"/>
+  <text x="405" y="318" text-anchor="middle" class="label">Event(event_id=9, param=命中方 / 目标)</text>
+  <path d="M600 395 H1000" class="event"/>
+  <text x="800" y="383" text-anchor="middle" class="label">收到 Event 后立即发出飞镖命中结构化信号</text>
+
+  <rect x="420" y="430" width="1050" height="255" class="region"/>
+  <text x="445" y="462" class="label">开始观察窗口</text>
+  <path d="M1000 505 h120 v54 h-120" class="event"/>
+  <text x="1137" y="495" text-anchor="middle" class="label">判断敌我关系与当前页面</text>
+  <text x="1137" y="522" text-anchor="middle" class="small">按目标和同队命中序号查本地规则</text>
+  <path d="M1000 600 H1390" class="control"/>
+  <text x="1195" y="580" text-anchor="middle" class="label">普通：主 HEVC 图传前台</text>
+  <text x="1195" y="607" text-anchor="middle" class="small">已部署英雄：辅助 H.264 相机全屏</text>
+  <path d="M1390 650 H1000" class="control"/>
+  <text x="1195" y="640" text-anchor="middle" class="small">接收与解码始终持续运行</text>
+
+  <rect x="420" y="720" width="1050" height="150" class="region"/>
+  <text x="445" y="752" class="label">观察期间</text>
+  <path d="M210 790 H600" class="event"/>
+  <text x="405" y="778" text-anchor="middle" class="label">stage_countdown_sec 持续更新</text>
+  <path d="M600 825 H1000" class="event"/>
+  <text x="800" y="813" text-anchor="middle" class="small">用倒计时计算剩余窗口；连续命中继续累加</text>
+
+  <rect x="420" y="900" width="1050" height="105" class="region"/>
+  <text x="445" y="932" class="label">窗口归零或比赛阶段变化</text>
+  <path d="M1000 970 H1390" class="control"/>
+  <text x="1195" y="958" text-anchor="middle" class="label">恢复全屏战术地图，并清理临时状态</text>
+</svg>

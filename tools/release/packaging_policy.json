@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "release_mode": "source",
+  "note": "首个公开版本只提供无历史公开镜像生成的源码归档，不承诺可安装二进制。",
+  "source": {
+    "artifacts": [
+      "source-archive"
+    ],
+    "build_evidence": "docs/development/verification.md"
+  },
+  "binary": {
+    "platforms": [],
+    "artifacts": {},
+    "platform_metadata": {},
+    "runtime_dependency_evidence": "",
+    "install_smoke_test": ""
+  },
+  "supply_chain": {
+    "sbom_generator": "tools/release/generate_source_sbom.py",
+    "checksum_generator": "tools/release/generate_checksums.py",
+    "signing_status": "not-required",
+    "signing_evidence": "docs/maintainers/signing-policy.md"
+  }
+}

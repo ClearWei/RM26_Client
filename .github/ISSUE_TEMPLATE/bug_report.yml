@@ -1,0 +1,112 @@
+name: 缺陷报告
+description: 报告可以稳定复现的客户端、模拟器或工具问题
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢反馈。本项目并非 DJI 或 RoboMaster 官方项目，请勿在此报告官方系统问题。
+        提交前请删除真实 IP、主机名、账号、密钥路径、比赛编号和无关现场日志。安全漏洞请按照 SECURITY.md 私下报告。
+
+  - type: checkboxes
+    id: precheck
+    attributes:
+      label: 提交前确认
+      options:
+        - label: 我已搜索现有 issue，没有发现相同问题。
+          required: true
+        - label: 这不是需要私下报告的安全漏洞。
+          required: true
+        - label: 我已对配置、截图和日志中的敏感信息进行脱敏。
+          required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: 问题概述
+      description: 用几句话说明发生了什么，以及它为何是缺陷。
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: 影响范围
+      options:
+        - 客户端界面或交互
+        - 核心状态或业务逻辑
+        - MQTT、UDP 或协议处理
+        - 视频接收或解码
+        - 模拟器或 Web 控制台
+        - 构建、容器或安装
+        - 测试、诊断或文档工具
+        - 其他
+    validations:
+      required: true
+
+  - type: input
+    id: revision
+    attributes:
+      label: 版本或提交
+      description: 请填写标签、提交哈希或分支名。
+      placeholder: 例如：commit abc1234
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 运行环境
+      description: 包括操作系统、架构、Qt/CMake/Python 版本、构建方式，以及使用模拟器还是真实测试环境。不要填写真实网络地址。
+      placeholder: |
+        操作系统：
+        架构：
+        Qt/CMake/Python：
+        构建或启动方式：
+        数据来源：本地模拟器 / 已授权测试环境
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 复现步骤
+      description: 提供最小、稳定、按顺序可执行的步骤。
+      placeholder: |
+        1. 启动……
+        2. 设置……
+        3. 执行……
+        4. 出现……
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为与实际行为
+      placeholder: |
+        期望：
+        实际：
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 已脱敏的证据
+      description: 可附最小日志、截图、测试输出或抓包分析结论。不要上传未经授权的抓包、官方资料或完整现场日志。
+      render: shell
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: 影响与回归信息
+      description: 说明出现频率、是否阻塞使用、最近已知正常版本，以及你尝试过的排查方法。
+
+  - type: checkboxes
+    id: final_check
+    attributes:
+      label: 最终确认
+      options:
+        - label: 我有权分享所附代码、图片、日志和其他材料。
+          required: true

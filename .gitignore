@@ -1,0 +1,171 @@
+# 构建目录与编译产物
+build/
+build-*/
+build_*/
+build*/
+*build-*
+Testing/
+RoboMasterClient2025_autogen/
+RoboMasterClient2025.app/
+RoboMasterClientLib_autogen/
+*.app
+*.a
+*.o
+*.dylib
+
+# CMake、Ninja 与 Qt 生成文件
+CMakeCache.txt
+CMakeFiles/
+CMakeLists.txt.user*
+CMakeUserPaths.cmake
+CMakeUserPresets.json
+cmake_install.cmake
+compile_commands.json
+*_autogen/
+**/CTestTestfile.cmake
+build.ninja
+.ninja_log
+.ninja_deps
+Makefile*
+*.moc
+moc_*.cpp
+moc_*.h
+qrc_*.cpp
+ui_*.h
+*.qmlc
+*.jsc
+*.pro.user
+*.pro.user.*
+*.qbs.user
+*.qbs.user.*
+
+# Visual Studio 与 IDE 的本机配置
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*creator.user*
+.vscode/
+.idea/
+.vs/
+.trae/
+.qtcreator/
+.qt/
+.figma/
+.cache/
+*.code-workspace
+
+# 智能开发工具、代理配置和会话记录仅供本地使用
+.agent/
+.agents/
+.claude/
+.codex/
+.marscode/
+.trellis/
+.rm26_dev/
+.github/copilot-instructions.md
+.traeignore
+AGENTS.md
+CLAUDE.md
+
+# 浏览器自动化、本地审计和运行证据不进入源码包
+.playwright-cli/
+.playwright-mcp/
+output/
+tmp/
+.tmp/
+recordings/
+logs/
+log/
+/harness/
+/docs/devkb/
+/tools/rm26_dev/
+/tools/cross_platform_agent/
+/src/harness/
+/src/verify/
+*.log
+*.trace
+*.har
+*.pcap
+*.pcapng
+*.profraw
+coverage/
+
+# 内部方案、审计底稿和采访准备材料不属于公开源码
+/docs/plans/
+/docs/communications/*interview-brief*.md
+/docs/maintainers/history-audit-*.md
+/docs/maintainers/open-source-hardening-baseline.md
+/docs/maintainers/open-source-readiness.md
+
+# 早期联调的一次性注入脚本已由模拟器和正式诊断工具替代
+/mqtt_full_inject.py
+/mqtt_inject_and_verify.py
+/mqtt_sniff.py
+/mqtt_trigger_settlement.py
+/sim_check_state.py
+/sim_force_settlement.py
+/sim_inject.py
+/sim_inject2.py
+/sim_trigger_end.py
+
+# 本机维护与旧录屏入口，不属于客户端或模拟器发布内容
+/fix_docker_build_network.sh
+/screenshot.sh
+/launch.sh
+/run_all.sh
+
+# 临时文件与编辑器备份
+*.tmp
+*.temp
+*~
+*.bak
+*.orig
+.DS_Store
+backup/
+
+# Python 本地环境与缓存
+__pycache__/
+*.pyc
+.venv/
+.env
+sim/*.egg-info/
+
+# 测试可执行文件（保留测试源码）
+tests/test_*
+!tests/test_*.cpp
+!tests/test_*.h
+!tests/test_*.hpp
+tests/unit_tests
+
+# 模拟器与 Qt 的运行期生成目录
+sim/.qt/
+sim/CMakeFiles/
+sim/server/static/hls/
+sim/resources/videos/
+
+# Protobuf 的 C++ 生成文件由构建系统生成
+*.pb.cc
+*.pb.h
+
+# 本地大体积运行素材；公开文档素材由专用清单管理
+resources/videos/
+
+# 运行配置可能包含现场地址；公开仓库只跟踪脱敏示例
+/config.json
+
+# 仅供本地核对的官方手册
+RoboMaster 2026 机甲大师超级对抗赛比赛规则手册V1.3.0（20260209）.pdf
+RoboMaster 2026 机甲大师高校系列赛通信协议 V1.2.0（20260209）.pdf
+RoboMaster 2026 机甲大师高校系列赛通信协议 V2.0.0（20260626）.pdf
+rm2026_rules_v1.3.0.pdf
+
+# 本地抽取、资源整理和一次性辅助文件
+.tmp_pdfdeps/
+resources/images-2-*/
+tmp_*.png
+pdf_*.txt
+/main
+/EOF
+/服务端
+/southeast.png

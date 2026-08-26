@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <rect x="16" y="24" width="32" height="20" rx="3" fill="#AA6600" stroke="#884400" stroke-width="2"/>
+  <circle cx="26" cy="30" r="2" fill="#333"/>
+  <circle cx="38" cy="30" r="2" fill="#333"/>
+  <rect x="24" y="36" width="16" height="3" rx="1" fill="#666"/>
+  <text x="32" y="52" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#333">INF</text>
+</svg>

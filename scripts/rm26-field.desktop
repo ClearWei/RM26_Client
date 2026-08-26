@@ -1,0 +1,14 @@
+[Desktop Entry]
+Version=1.0
+Name=RM26 客户端
+Name[zh_CN]=RM26 自定义客户端
+Comment=FDU EGA RoboMaster 2026 Custom Client
+Comment[zh_CN]=复旦大学 EGA RoboMaster 2026 自定义客户端
+Exec=sh -c 'cd "$(dirname "$1")/.." && scripts/rm26-field-launch.sh' _ %k
+Icon=resources/images/app_icon.png
+Path=
+Type=Application
+Terminal=false
+Categories=Game;
+StartupNotify=false
+X-GNOME-Autostart-enabled=true

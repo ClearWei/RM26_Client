@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "application": {
+    "strategy": "single-source",
+    "declared_version": "1.0.0",
+    "sources": {
+      "cmake_project": "CMakeLists.txt",
+      "example_config": "config.example.json",
+      "runtime_metadata": "src/main.cpp",
+      "config_fallback": "src/config/ConfigManager.cpp",
+      "docker_image": "docker/client.Dockerfile",
+      "macos_bundle": "Info.plist"
+    }
+  },
+  "simulator": {
+    "strategy": "independent",
+    "declared_version": "0.1.0",
+    "sources": {
+      "pyproject": "sim/pyproject.toml"
+    }
+  },
+  "protocol": {
+    "strategy": "independent",
+    "sources": {
+      "manifest": "src/network/proto/protocol_manifest.json"
+    }
+  },
+  "executable": {
+    "strategy": "legacy-compatible",
+    "canonical_name": "RM26CustomClient",
+    "legacy_names": [
+      "RoboMasterClient2025"
+    ],
+    "legacy_compatibility_through": "1.99.99",
+    "sources": {
+      "cmake_targets": "CMakeLists.txt",
+      "docker_entrypoint": "docker/client-entrypoint.sh",
+      "macos_bundle": "Info.plist"
+    }
+  }
+}
